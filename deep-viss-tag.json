@@ -1,0 +1,804 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "DeepVISS (Deep Vision Interoperability Specification Standard) allows several computer vision solutions to produce, consume and exchange events in the same format.",
+    "version": "1.0.0",
+    "title": "DeepVISS TAG",
+    "termsOfService": "https://deepviss.org",
+    "contact": {
+      "email": "office@deepviss.org"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "dataset",
+      "description": "Infroamation about the datasets",
+      "externalDocs": {
+        "description": "Datasets API",
+        "url": "https://deepviss.org"
+      }
+    }
+  ],
+  "paths": {
+    "/dataset/list": {
+      "get": {
+        "tags": [
+          "dataset"
+        ],
+        "summary": "Retrieve list of datasets",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetDatasetList",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Dataset"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/dataset/create": {
+      "post": {
+        "tags": [
+          "dataset"
+        ],
+        "summary": "Retrieve list of datasets",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "CreateDataset",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "datasetName",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "datasetType",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Dataset"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+
+    "/challenge/create": {
+      "post": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Create a new challenge.",
+        "description": "",
+        "operationId": "CreateChallenge",
+        "parameters": [],
+        "requestBody": {
+          "description": "The challenge object to be created",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Challenge"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Challenge"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Challenge"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/challenge/list": {
+      "get": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Retrieve list of challenges",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetChallengeList",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Challenge"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/challenge/get": {
+      "get": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Retrieve list of challenges",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetChallenge",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the dataset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Challenge"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/challenge/download": {
+      "get": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Download tagged items from challenges",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "DownloadChallenge",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the dataset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Challenge"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+
+    "/task/get": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Get new task",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetTask",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the challenge"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Task"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/task/submit": {
+      "post": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Submit  task",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "SubmitTask",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "taskId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the challenge"
+          }
+        ],
+        "requestBody": {
+          "description": "The List of tags",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Tag"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Tag"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Task"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+
+  },
+  "components": {
+    "schemas": {
+      "Avatar": {
+        "type": "object",
+        "properties": {
+          "avatarId": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, unique id of avatar",
+            "example": "UTWKE80768EF05389899TDD196397EDFDDFBC81751818B7FD13001IU455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "lifeForm": {
+            "type": "string",
+            "enum": [
+              "silicon",
+              "carbon"
+            ]
+          }
+        }
+      },
+      "Dataset": {
+        "type": "object",
+        "properties": {
+          "datasetId": {
+            "type": "integer",
+            "description": "[TBD] Alpha-numeric, unique id of dataset",
+            "example": "XAFKE80768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "rgb-static-photo",
+              "rgb-live-photo",
+              "rgb-video",
+              "audio-rgb-video",
+              "audio-only",
+              "text"
+            ]
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
+          },
+          "lastUpdateTimestamp": {
+            "type": "string",
+            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
+          },
+          "owningAccountId": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, unique id of dataset",
+            "example": "UWRBFUWRW18B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0EUWEBFWUBEFWUE"
+          },
+          "name": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, name of dataset",
+            "example": "Dogs"
+          }
+        }
+      },
+      "Challenge": {
+        "type": "object",
+        "properties": {
+          "challengeId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of challenge. ",
+            "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "datasetId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of dataset",
+            "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "evaluationPolicyId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of evaluation policy",
+            "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "closed"
+            ]
+          },
+          "accessType": {
+            "type": "string",
+            "enum": [
+              "public",
+              "private",
+              "confidential"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, name of dataset",
+            "example": "Dogs"
+          },
+          "completionPercentage": {
+            "type": "int",
+            "description": "completion percentage of a challenge",
+            "example": "70"
+          }
+        }
+      },
+      "MediaDescriptor": {
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Size of files when represented in binary, without additional encoding. Used for de-duplication.",
+            "example": 1345789
+          },
+          "hash": {
+            "type": "string",
+            "description": "Cryptographic hash of original file. Used for de-duplication.",
+            "example": "FGX8993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "pHash": {
+            "type": "string",
+            "description": "Perceptual representation of the content of the media. Used for de-duplication.",
+            "example": "pre"
+          }
+        }
+      },
+      "MediaItem": {
+        "type": "object",
+        "properties": {
+          "mediaItemId": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, unique id of media item",
+            "example": "UERE80768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "rgb-static-photo",
+              "rgb-live-photo",
+              "rgb-video",
+              "audio-rgb-video",
+              "audio-only",
+              "text"
+            ]
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "image/heif",
+              "image/heic",
+              "image/heif-sequence",
+              "image/jpeg",
+              "image/png",
+              "video/mp4",
+              "video/3gpp",
+              "video/quicktime",
+              "video/x-msvideo",
+              "video/x-ms-wmv"
+            ]
+          },
+          "descriptor": {
+            "type": "MediaDescriptor",
+            "$ref": "#/definitions/MediaDescriptor",
+            "description": "Information about the evaluation of the accuracy of this tag."
+          },
+          "sharding": {
+            "type": "shardingDescriptor",
+            "$ref": "#/definitions/ShardingDescriptor",
+            "description": "Information about the shardId, the block id and the sharding policy this media items should conform to."
+          }
+        }
+      },
+      "Point2D": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "Point2D",
+            "$ref": "deep-viss-common.json#/components/schemas/Point2D",
+            "description": "This is a test of including external object, defined in a different schema file"
+          }
+        }
+      },
+      "Point3D": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "Point3D",
+            "$ref": "deep-viss-common.json#/components/schemas/Point3D",
+            "description": "This is a test of including external object, defined in a different schema file"
+          }
+        }
+      },
+      "Shape": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "Shape",
+            "$ref": "deep-viss-common.json#/components/schemas/Shape",
+            "description": "This is a test of including external object, defined in a different schema file"
+          }
+        }
+      },
+      "Shape2DReactangle": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "Shape2DReactangle",
+            "$ref": "deep-viss-common.json#/components/schemas/Shape2DReactangle",
+            "description": "This is a test of including external object, defined in a different schema file"
+          }
+        }
+      },
+      "Shape2DPolygon": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "Shape2DPolygon",
+            "$ref": "deep-viss-common.json#/components/schemas/Shape2DPolygon",
+            "description": "This is a test of including external object, defined in a different schema file"
+          }
+        }
+      },
+      "Shape2DTimeboundPolygon": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "Shape2DTimeboundPolygon",
+            "$ref": "deep-viss-common.json#/components/schemas/Shape2DTimeboundPolygon",
+            "description": "This is a test of including external object, defined in a different schema file"
+          }
+        }
+      },
+      "Evaluation": {
+        "type": "object",
+        "description": "The confidence of a merged tag (from several tags) or the overall.",
+        "properties": {
+          "confidence": {
+            "description": "The confidence of the merged tag (from several tags), based on IoU (Intersection over Union) of the composing tags",
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "taskId": {
+            "type": "Avatar",
+            "$ref": "#/definitions/Avatar",
+            "description": "Alpha-numeric, unique id of user who has performed the task",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "avatarId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of user who has performed the task.",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "challengeId": {
+            "type": "string",
+            "description": "Alpa-numeric, unique id of challenge. ",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "attemptSequenceNumber": {
+            "type": "string",
+            "description": "Identifies the number of evaluation attempts performed on this specific media item.",
+            "example": 2
+          },
+          "generationTimestamp": {
+            "type": "string",
+            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00) when the task was requested by the user"
+          },
+          "submissionTimestamp": {
+            "type": "string",
+            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00) when the task was submitted by the user"
+          },
+          "image": {
+            "type": "Images",
+            "$ref": "#/definitions/Image",
+            "description": "Alpa-numeric, unique id of media item path. ",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "evaluationStatus": {
+            "type": "string",
+            "enum": [
+              "unallocated",
+              "leased",
+              "not-evaluated",
+              "passed",
+              "failed",
+              "skipped",
+              "timed-out"
+            ]
+          }
+        }
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "tagId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of tagged object",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "submissionTimestamp": {
+            "type": "string",
+            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
+          },
+          "objectType": {
+            "type": "string",
+            "description": "What type of object/event has been detected?",
+            "example": "vehicle"
+          },
+          "geometry": {
+            "description": "What are the shapes that compose the tag?",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Shape",
+              "type": "Shape"
+            }
+          },
+          "taskId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of task object",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          }
+        }
+      },
+      "MergedTag": {
+        "type": "object",
+        "properties": {
+          "mediaItemId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of tagged object",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "challengeId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of tagged object",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "objectType": {
+            "type": "string",
+            "description": "What type of object/event has been detected?",
+            "example": "vehicle"
+          },
+          "geometry": {
+            "description": "What are the shapes that have been merged to determine this tag?",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Shape",
+              "type": "Shape"
+            }
+          },
+          "evaluation": {
+            "type": "Evaluation",
+            "$ref": "#/definitions/Evaluation",
+            "description": "Information about the evaluation of the accuracy of this tag."
+          },
+          "composingTags": {
+            "description": "What are the tags which have been merged?",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "TaggedMediaItem": {
+        "type": "object",
+        "properties": {
+          "mediaItemId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of tagged object",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "challengeId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of tagged object",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "composingTasks": {
+            "description": "What are the tasks contributed in the determination of these tags?",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mergedTags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/MergedTag",
+              "type": "MergedTag"
+            }
+          }
+
+        }
+      },
+      "EvaluationPolicy": {
+        "type": "object",
+        "description": "The parameters used in the evaluation of a challenge, its tasks and their tags.",
+        "properties": {
+          "evaluationPolicyId": {
+            "description": "Unique ID of evaluation policy",
+            "type": "string"
+          },
+          "spatialOverlapThreshold": {
+            "description": "The minimum amount of overlap between two tags, which, in conjuction with a matching object-type, is a condition for merging two tags",
+            "type": "number",
+            "format": "double",
+            "example": 0.5
+          },
+          "harshness": {
+            "description": "The penalty incurred for a tag that is NOT matched with other tags",
+            "type": "number",
+            "format": "double",
+            "example": 0.5
+          },
+          "rankOfMean": {
+            "description": "The rank (power) of the generalized mean used for evaluating a task composed of several tags. Negative values mean harsher evaluations, values larger than 1.0 mean less harsh evaluations. Default value is 1.0 (arithmetic mean). ",
+            "type": "number",
+            "format": "double",
+            "example": 1.0
+          },
+          "summationType": {
+            "description": "If set to 'algebraic', negative results on one task will be substracted from user payout.",
+            "type": "string",
+            "enum": [
+              "algebraic",
+              "non-negative"
+            ]
+          }
+        }
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "Image",
+            "$ref": "deep-viss-common.json#/components/schemas/Image",
+            "description": "This is a test of including external object, defined in a different schema file"
+          }
+        }
+      },
+      "TestWithExternalObject": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "ExternalObject",
+            "$ref": "external-dependecy-example.json#/components/schemas/ExternalObject",
+            "description": "This is a test of including external object, defined in a different schema file"
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about DeepVISS",
+    "url": "https://deepviss.org"
+  }
+}
