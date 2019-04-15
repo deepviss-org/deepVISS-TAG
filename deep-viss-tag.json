@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "description": "DeepVISS (Deep Vision Interoperability Specification Standard) allows several computer vision solutions to produce, consume and exchange events in the same format.",
-    "version": "1.0.0",
-    "title": "DeepVISS Learning",
+    "version": "1.2.0",
+    "title": "DeepVISS TAG",
     "termsOfService": "https://deepviss.org",
     "contact": {
       "email": "office@deepviss.org"
@@ -511,7 +511,7 @@
           }
         }
       },
-      "shardingDescriptor": {
+      "ShardingDescriptor": {
         "type": "object",
         "description": "The confidence of a merged tag (from several tags) or the overall.",
         "properties": {
