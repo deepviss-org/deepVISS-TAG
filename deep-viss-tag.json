@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "description": "DeepVISS (Deep Vision Interoperability Specification Standard) allows several computer vision solutions to produce, consume and exchange events in the same format.",
-    "version": "1.2.0",
-    "title": "DeepVISS TAG",
+    "version": "1.0.0",
+    "title": "DeepVISS Learning",
     "termsOfService": "https://deepviss.org",
     "contact": {
       "email": "office@deepviss.org"
@@ -41,7 +41,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/Dataset"
+                    "$ref": "#/definitions/KnosisDataset"
                   }
                 }
               }
@@ -83,7 +83,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Dataset"
+                  "$ref": "#/definitions/KnosisDataset"
                 }
               }
             }
@@ -110,12 +110,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Challenge"
+                "$ref": "#/components/schemas/KnosisChallenge"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Challenge"
+                "$ref": "#/components/schemas/KnosisChallenge"
               }
             }
           }
@@ -126,7 +126,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Challenge"
+                  "$ref": "#/definitions/KnosisChallenge"
                 }
               }
             }
@@ -154,7 +154,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/Challenge"
+                    "$ref": "#/definitions/KnosisChallenge"
                   }
                 }
               }
@@ -190,7 +190,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Challenge"
+                  "$ref": "#/definitions/KnosisChallenge"
                 }
               }
             }
@@ -227,7 +227,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/Challenge"
+                    "$ref": "#/definitions/KnosisChallenge"
                   }
                 }
               }
@@ -264,7 +264,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Task"
+                  "$ref": "#/definitions/KnosisTask"
                 }
               }
             }
@@ -301,7 +301,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/Tag"
+                  "$ref": "#/definitions/KnosisTag"
                 }
               }
             },
@@ -309,7 +309,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/Tag"
+                  "$ref": "#/definitions/KnosisTag"
                 }
               }
             }
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Task"
+                  "$ref": "#/definitions/KnosisTask"
                 }
               }
             }
@@ -353,11 +353,11 @@
           }
         }
       },
-      "Dataset": {
+      "KnosisDataset": {
         "type": "object",
         "properties": {
           "datasetId": {
-            "type": "integer",
+            "type": "string",
             "description": "[TBD] Alpha-numeric, unique id of dataset",
             "example": "XAFKE80768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -394,7 +394,7 @@
           }
         }
       },
-      "Challenge": {
+      "KnosisChallenge": {
         "type": "object",
         "properties": {
           "challengeId": {
@@ -444,7 +444,7 @@
           }
         }
       },
-      "MediaDescriptor": {
+      "KnosisMediaDescriptor": {
         "type": "object",
         "properties": {
           "size": {
@@ -465,7 +465,7 @@
           }
         }
       },
-      "MediaItem": {
+      "KnosisMediaItem": {
         "type": "object",
         "properties": {
           "mediaItemId": {
@@ -500,8 +500,8 @@
             ]
           },
           "descriptor": {
-            "type": "MediaDescriptor",
-            "$ref": "#/definitions/MediaDescriptor",
+            "type": "KnosisMediaDescriptor",
+            "$ref": "#/definitions/KnosisMediaDescriptor",
             "description": "Information about the evaluation of the accuracy of this tag."
           },
           "sharding": {
@@ -511,67 +511,24 @@
           }
         }
       },
-      "Point2D": {
+      "shardingDescriptor": {
         "type": "object",
+        "description": "The confidence of a merged tag (from several tags) or the overall.",
         "properties": {
-          "descriptor": {
-            "type": "Point2D",
-            "$ref": "deep-viss-common.json#/components/schemas/Point2D",
-            "description": "This is a test of including external object, defined in a different schema file"
+          "block": {
+            "description": "TBD",
+            "type": "number",
+            "format": "double"
+          },
+          "shard": {
+            "description": "TBD",
+            "type": "number",
+            "format": "double"
           }
         }
       },
-      "Point3D": {
-        "type": "object",
-        "properties": {
-          "descriptor": {
-            "type": "Point3D",
-            "$ref": "deep-viss-common.json#/components/schemas/Point3D",
-            "description": "This is a test of including external object, defined in a different schema file"
-          }
-        }
-      },
-      "Shape": {
-        "type": "object",
-        "properties": {
-          "descriptor": {
-            "type": "Shape",
-            "$ref": "deep-viss-common.json#/components/schemas/Shape",
-            "description": "This is a test of including external object, defined in a different schema file"
-          }
-        }
-      },
-      "Shape2DReactangle": {
-        "type": "object",
-        "properties": {
-          "descriptor": {
-            "type": "Shape2DReactangle",
-            "$ref": "deep-viss-common.json#/components/schemas/Shape2DReactangle",
-            "description": "This is a test of including external object, defined in a different schema file"
-          }
-        }
-      },
-      "Shape2DPolygon": {
-        "type": "object",
-        "properties": {
-          "descriptor": {
-            "type": "Shape2DPolygon",
-            "$ref": "deep-viss-common.json#/components/schemas/Shape2DPolygon",
-            "description": "This is a test of including external object, defined in a different schema file"
-          }
-        }
-      },
-      "Shape2DTimeboundPolygon": {
-        "type": "object",
-        "properties": {
-          "descriptor": {
-            "type": "Shape2DTimeboundPolygon",
-            "$ref": "deep-viss-common.json#/components/schemas/Shape2DTimeboundPolygon",
-            "description": "This is a test of including external object, defined in a different schema file"
-          }
-        }
-      },
-      "Evaluation": {
+
+      "KnosisEvaluation": {
         "type": "object",
         "description": "The confidence of a merged tag (from several tags) or the overall.",
         "properties": {
@@ -582,12 +539,11 @@
           }
         }
       },
-      "Task": {
+      "KnosisTask": {
         "type": "object",
         "properties": {
           "taskId": {
-            "type": "Avatar",
-            "$ref": "#/definitions/Avatar",
+            "type": "string",
             "description": "Alpha-numeric, unique id of user who has performed the task",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -618,11 +574,11 @@
           },
           "image": {
             "type": "Images",
-            "$ref": "#/definitions/Image",
+            "$ref": "./deep-viss-common.json#/components/schemas/Image",
             "description": "Alpa-numeric, unique id of media item path. ",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
-          "evaluationStatus": {
+          "EvaluationStatus": {
             "type": "string",
             "enum": [
               "unallocated",
@@ -636,7 +592,7 @@
           }
         }
       },
-      "Tag": {
+      "KnosisTag": {
         "type": "object",
         "properties": {
           "tagId": {
@@ -658,7 +614,7 @@
             "description": "What are the shapes that compose the tag?",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/Shape",
+              "$ref": "deep-viss-common.json#/components/schemas/Shape",
               "type": "Shape"
             }
           },
@@ -669,7 +625,7 @@
           }
         }
       },
-      "MergedTag": {
+      "KnosisMergedTag": {
         "type": "object",
         "properties": {
           "mediaItemId": {
@@ -691,13 +647,13 @@
             "description": "What are the shapes that have been merged to determine this tag?",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/Shape",
+              "$ref": "deep-viss-common.json#/components/schemas/Shape",
               "type": "Shape"
             }
           },
           "evaluation": {
-            "type": "Evaluation",
-            "$ref": "#/definitions/Evaluation",
+            "type": "KnosisEvaluation",
+            "$ref": "#/definitions/KnosisEvaluation",
             "description": "Information about the evaluation of the accuracy of this tag."
           },
           "composingTags": {
@@ -709,7 +665,7 @@
           }
         }
       },
-      "TaggedMediaItem": {
+      "KnosisTaggedMediaItem": {
         "type": "object",
         "properties": {
           "mediaItemId": {
@@ -732,16 +688,16 @@
           "mergedTags": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/MergedTag",
-              "type": "MergedTag"
+              "$ref": "#/definitions/KnosisMergedTag",
+              "type": "KnosisMergedTag"
             }
           }
 
         }
       },
-      "EvaluationPolicy": {
+      "KnosisEvaluationPolicy": {
         "type": "object",
-        "description": "The parameters used in the evaluation of a challenge, its tasks and their tags.",
+        "description": "The parameters used in the evaluation of a challenge, its tasks and their KnosisTags.",
         "properties": {
           "evaluationPolicyId": {
             "description": "Unique ID of evaluation policy",
@@ -775,25 +731,20 @@
           }
         }
       },
-      "Image": {
-        "type": "object",
-        "properties": {
-          "descriptor": {
-            "type": "Image",
-            "$ref": "deep-viss-common.json#/components/schemas/Image",
-            "description": "This is a test of including external object, defined in a different schema file"
-          }
-        }
+      "Point2D": {
+        "$ref": "deep-viss-common.json#/components/schemas/Point2D"
       },
-      "TestWithExternalObject": {
-        "type": "object",
-        "properties": {
-          "descriptor": {
-            "type": "ExternalObject",
-            "$ref": "external-dependecy-example.json#/components/schemas/ExternalObject",
-            "description": "This is a test of including external object, defined in a different schema file"
-          }
-        }
+      "Point3D": {
+        "$ref": "deep-viss-common.json#/components/schemas/Point3D"
+      },
+      "Shape2DReactangle": {
+        "$ref": "deep-viss-common.json#/components/schemas/Shape2DReactangle"
+      },
+      "Shape2DPolygon": {
+        "$ref": "deep-viss-common.json#/components/schemas/Shape2DPolygon"
+      },
+      "Shape2DTimeboundPolygon": {
+        "$ref": "deep-viss-common.json#/components/schemas/Shape2DTimeboundPolygon"
       }
     }
   },
