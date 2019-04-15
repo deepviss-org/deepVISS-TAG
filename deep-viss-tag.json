@@ -336,7 +336,7 @@
   },
   "components": {
     "schemas": {
-      "Avatar": {
+      "KnosisAvatar": {
         "type": "object",
         "properties": {
           "avatarId": {
