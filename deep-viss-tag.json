@@ -239,6 +239,44 @@
         }
       }
     },
+    "/challenge/getTaggedItems": {
+      "get": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Retrieve list tagged media items",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetTaggedItems",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the dataset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/KnosisTaggedMediaItem"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
 
     "/task/get": {
       "get": {
@@ -331,8 +369,151 @@
           }
         }
       }
-    }
+    },
 
+    "/dispatchPolicy/list": {
+      "get": {
+        "tags": [
+          "dispatchPolicy"
+        ],
+        "summary": "Retrieve list of dispatch policies",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetDispatchPolicyList",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/KnosisDispatchPolicy"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/dispatchPolicy/create": {
+      "post": {
+        "tags": [
+          "dispatchPolicy"
+        ],
+        "summary": "Create a new dispatchPolicy.",
+        "description": "",
+        "operationId": "CreateDispatchPolicy",
+        "parameters": [],
+        "requestBody": {
+          "description": "The dispatchPolicy object to be created",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KnosisDispatchPolicy"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/KnosisDispatchPolicy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/KnosisDispatchPolicy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+
+    "/evaluationPolicy/list": {
+      "get": {
+        "tags": [
+          "evaluationPolicy"
+        ],
+        "summary": "Retrieve list of evaluation policies",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetEvaluationPolicyList",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/KnosisEvaluationPolicy"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/evaluationPolicy/create": {
+      "post": {
+        "tags": [
+          "evaluationPolicy"
+        ],
+        "summary": "Create a new evaluationPolicy.",
+        "description": "",
+        "operationId": "CreateEvaluationPolicy",
+        "parameters": [],
+        "requestBody": {
+          "description": "The evaluationPolicy object to be created",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KnosisEvaluationPolicy"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/KnosisEvaluationPolicy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/KnosisEvaluationPolicy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
   },
   "components": {
     "schemas": {
@@ -374,12 +555,12 @@
           },
           "creationTimestamp": {
             "type": "string",
-            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "format": "date-time",
             "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
           },
           "lastUpdateTimestamp": {
             "type": "string",
-            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "format": "date-time",
             "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
           },
           "owningAccountId": {
@@ -391,6 +572,12 @@
             "type": "string",
             "description": "[TBD] Alpha-numeric, name of dataset",
             "example": "Dogs"
+          },
+          "image": {
+            "type": "Images",
+            "$ref": "./deep-viss-common.json#/components/schemas/Image",
+            "description": "Alpa-numeric, unique id of media item path. ",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           }
         }
       },
@@ -412,9 +599,14 @@
             "description": "Alpha-numeric, unique id of evaluation policy",
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
+          "dispatchPolicyId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of dispatch policy",
+            "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
           "creationTimestamp": {
             "type": "string",
-            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "format": "date-time",
             "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
           },
           "status": {
@@ -564,12 +756,12 @@
           },
           "generationTimestamp": {
             "type": "string",
-            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "format": "date-time",
             "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00) when the task was requested by the user"
           },
           "submissionTimestamp": {
             "type": "string",
-            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "format": "date-time",
             "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00) when the task was submitted by the user"
           },
           "image": {
@@ -578,7 +770,7 @@
             "description": "Alpa-numeric, unique id of media item path. ",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
-          "EvaluationStatus": {
+          "evaluationStatus": {
             "type": "string",
             "enum": [
               "unallocated",
@@ -589,6 +781,11 @@
               "skipped",
               "timed-out"
             ]
+          },
+          "challengeName": {
+            "type": "string",
+            "description": "Name of Challenge",
+            "example": "Tag Cats"
           }
         }
       },
@@ -602,7 +799,7 @@
           },
           "submissionTimestamp": {
             "type": "string",
-            "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$/g",
+            "format": "date-time",
             "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
           },
           "objectType": {
@@ -691,8 +888,13 @@
               "$ref": "#/definitions/KnosisMergedTag",
               "type": "KnosisMergedTag"
             }
+          },
+          "image": {
+            "type": "Images",
+            "$ref": "./deep-viss-common.json#/components/schemas/Image",
+            "description": "Alpa-numeric, unique id of media item path. ",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           }
-
         }
       },
       "KnosisEvaluationPolicy": {
@@ -702,6 +904,11 @@
           "evaluationPolicyId": {
             "description": "Unique ID of evaluation policy",
             "type": "string"
+          },
+          "name": {
+            "description": "name",
+            "type": "string",
+            "example": "Lightwight"
           },
           "spatialOverlapThreshold": {
             "description": "The minimum amount of overlap between two tags, which, in conjuction with a matching object-type, is a condition for merging two tags",
@@ -728,6 +935,31 @@
               "algebraic",
               "non-negative"
             ]
+          }
+        }
+      },
+      "KnosisDispatchPolicy": {
+        "type": "object",
+        "description": "The parameters used in the disaptch of a task",
+        "properties": {
+          "dispatchPolicyId": {
+            "description": "Unique ID of dispatch policy",
+            "type": "string"
+          },
+          "name": {
+            "description": "name",
+            "type": "string",
+            "example": "Fast"
+          },
+          "numberOfUsers": {
+            "description": "Number of users that are assigned the same task",
+            "type": "integer",
+            "example": 3
+          },
+          "mediaItemLockTimeout": {
+            "description": "Time to wait before assign the same mediaItem to other user",
+            "type": "integer",
+            "example": 10
           }
         }
       },
