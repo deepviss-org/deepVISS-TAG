@@ -94,6 +94,74 @@
         }
       }
     },
+    "/dataset/delete": {
+      "delete": {
+        "tags": [
+          "dataset"
+        ],
+        "summary": "Delete dataset",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "DeleteDataset",
+        "parameters": [],
+        "requestBody": {
+          "description": "The challenge object to be created",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/dataset/addMediaItem": {
+      "post": {
+        "tags": [
+          "dataset"
+        ],
+        "summary": "add media items to dataset",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "AddMediaItem",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "datasetId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
 
     "/challenge/create": {
       "post": {
@@ -513,6 +581,138 @@
           }
         }
       }
+    },
+
+    "/mediaItem/get": {
+      "get": {
+        "tags": [
+          "mediaItem"
+        ],
+        "summary": "Retrieve media item",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetMediaItem",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "mediaItemUrl",
+            "schema": {
+              "type": "string"
+            },
+            "description": "media item url"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/mediaItem/delete": {
+      "delete": {
+        "tags": [
+          "mediaItem"
+        ],
+        "summary": "Delete mediaItem",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "DeleteMediaItems",
+        "parameters": [],
+        "requestBody": {
+          "description": "The challenge object to be created",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/mediaItem/list": {
+      "get": {
+        "tags": [
+          "mediaItem"
+        ],
+        "summary": "Retrieve list of mediaItems",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetMediaItemList",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "datasetId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/KnosisMediaItem"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -633,6 +833,11 @@
             "type": "int",
             "description": "completion percentage of a challenge",
             "example": "70"
+          },
+          "description": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, name of dataset",
+            "example": "Tag the cats"
           }
         }
       },
@@ -700,6 +905,12 @@
             "type": "shardingDescriptor",
             "$ref": "#/definitions/ShardingDescriptor",
             "description": "Information about the shardId, the block id and the sharding policy this media items should conform to."
+          },
+          "image": {
+            "type": "Images",
+            "$ref": "./deep-viss-common.json#/components/schemas/Image",
+            "description": "Alpa-numeric, unique id of media item path. ",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           }
         }
       },
@@ -786,6 +997,11 @@
             "type": "string",
             "description": "Name of Challenge",
             "example": "Tag Cats"
+          },
+          "challengeDescription": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, name of dataset",
+            "example": "Tag the cats"
           }
         }
       },
