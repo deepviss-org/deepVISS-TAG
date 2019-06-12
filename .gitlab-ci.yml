@@ -1,0 +1,5 @@
+release:
+  script:
+    - git remote add origin1 https://github.com/deepviss-org/deepVISS-TAG.git
+    - git push origin1 master
+  stage: deploy
