@@ -2,7 +2,7 @@ release:
 
   script:
     - git remote set-url origin https://github.com/deepviss-org/deepVISS-TAG.git
-    - git push -u origin master
+    - git push -u origin stable:master
   only:
     - stable
 
