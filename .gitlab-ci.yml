@@ -4,9 +4,9 @@ release:
     - git remote set-url origin https://github.com/deepviss-org/deepVISS-TAG.git
     - git add .
     - git status
-    - git commit -m "first commit"
     - git config --global user.email "andrei.t.stoicescu@gmail.com"
     - git config --global user.name "Andrei Stoicescu"
+    - git commit -m "first commit"
     - git push -u origin master
   only:
     - stable
