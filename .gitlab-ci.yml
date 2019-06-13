@@ -1,13 +1,11 @@
-release:
+image: ilyasemenov/gitlab-ci-git-push
 
-  script:
-    - git remote set-url origin https://github.com/deepviss-org/deepVISS-TAG.git
-    - git add .
-    - git status
-    - git config --global user.email "andrei.t.stoicescu@gmail.com"
-    - git config --global user.name "Andrei Stoicescu"
-    - git push -u origin master
+stages:
+  - deploy
+
+deploy to production:
+  stage: deploy
+  environment: production
   only:
     - stable
-
-  stage: deploy
+  script: git-push   git@github.com:deepviss-org/deepVISS-TAG.git
