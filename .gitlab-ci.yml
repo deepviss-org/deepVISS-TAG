@@ -6,7 +6,6 @@ release:
     - git status
     - git config --global user.email "andrei.t.stoicescu@gmail.com"
     - git config --global user.name "Andrei Stoicescu"
-    - git commit -m "first commit"
     - git push -u origin master
   only:
     - stable
