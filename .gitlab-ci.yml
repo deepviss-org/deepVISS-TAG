@@ -8,4 +8,4 @@ deploy to production:
   environment: production
   only:
     - stable
-  script: git-push   git@github.com:deepviss-org/deepVISS-TAG.git
+  script: git-push git@github.com:deepviss-org/deepVISS-TAG.git
