@@ -41,7 +41,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/KnosisDataset"
+                    "$ref": "#/definitions/Dataset"
                   }
                 }
               }
@@ -67,11 +67,19 @@
             "name": "datasetName",
             "schema": {
               "type": "string"
-            }
+            },
+            "required": true
           },
           {
             "in": "query",
             "name": "datasetType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "staticImage",
             "schema": {
               "type": "string"
             }
@@ -83,7 +91,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/KnosisDataset"
+                  "$ref": "#/definitions/Dataset"
                 }
               }
             }
@@ -162,6 +170,36 @@
         }
       }
     },
+    "/dataset/getStaticImages": {
+      "get": {
+        "tags": [
+          "dataset"
+        ],
+        "summary": "Retrieve list of static images",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetDatasetStaticImages",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+
 
     "/challenge/create": {
       "post": {
@@ -178,12 +216,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/KnosisChallenge"
+                "$ref": "#/components/schemas/Challenge"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/KnosisChallenge"
+                "$ref": "#/components/schemas/Challenge"
               }
             }
           }
@@ -194,7 +232,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/KnosisChallenge"
+                  "$ref": "#/definitions/Challenge"
                 }
               }
             }
@@ -205,15 +243,53 @@
         }
       }
     },
-    "/challenge/list": {
+    "/challenge/listSupervisor": {
       "get": {
         "tags": [
           "challenge"
         ],
         "summary": "Retrieve list of challenges",
         "description": "Multiple status values can be provided with comma separated strings",
-        "operationId": "GetChallengeList",
-        "parameters": [],
+        "operationId": "GetChallengeListSupervisor",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "challengeName",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "accessType",
+            "schema": {
+              "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
+            }
+          },
+          {
+            "in": "query",
+            "name": "liked",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
@@ -222,7 +298,74 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/KnosisChallenge"
+                    "$ref": "#/definitions/Challenge"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/challenge/listCollaborator": {
+      "get": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Retrieve list of challenges",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetChallengeListCollaborator",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "challengeName",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "accessType",
+            "schema": {
+              "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
+            }
+          },
+          {
+            "in": "query",
+            "name": "liked",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Challenge"
                   }
                 }
               }
@@ -258,7 +401,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/KnosisChallenge"
+                  "$ref": "#/definitions/Challenge"
                 }
               }
             }
@@ -295,7 +438,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/KnosisChallenge"
+                    "$ref": "#/definitions/Challenge"
                   }
                 }
               }
@@ -333,11 +476,75 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/KnosisTaggedMediaItem"
+                    "$ref": "#/definitions/TaggedMediaItem"
                   }
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/challenge/star": {
+      "post": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Star a public challenge.",
+        "description": "",
+        "operationId": "StarChallenge",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/challenge/assign": {
+      "post": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Assign a private challenge.",
+        "description": "",
+        "operationId": "AssignChallenge",
+        "parameters": [],
+        "requestBody": {
+          "description": "The users to be assigned to a challenge",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignUsersRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignUsersRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
           },
           "400": {
             "description": "Invalid status value"
@@ -370,7 +577,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/KnosisTask"
+                  "$ref": "#/definitions/Task"
                 }
               }
             }
@@ -407,7 +614,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/KnosisTag"
+                  "$ref": "#/definitions/Tag"
                 }
               }
             },
@@ -415,7 +622,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/KnosisTag"
+                  "$ref": "#/definitions/Tag"
                 }
               }
             }
@@ -427,7 +634,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/KnosisTask"
+                  "$ref": "#/definitions/Task"
                 }
               }
             }
@@ -438,7 +645,6 @@
         }
       }
     },
-
     "/dispatchPolicy/list": {
       "get": {
         "tags": [
@@ -456,7 +662,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/KnosisDispatchPolicy"
+                    "$ref": "#/definitions/DispatchPolicy"
                   }
                 }
               }
@@ -483,12 +689,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/KnosisDispatchPolicy"
+                "$ref": "#/components/schemas/DispatchPolicy"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/KnosisDispatchPolicy"
+                "$ref": "#/components/schemas/DispatchPolicy"
               }
             }
           }
@@ -499,7 +705,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/KnosisDispatchPolicy"
+                  "$ref": "#/definitions/DispatchPolicy"
                 }
               }
             }
@@ -510,7 +716,6 @@
         }
       }
     },
-
     "/evaluationPolicy/list": {
       "get": {
         "tags": [
@@ -528,7 +733,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/KnosisEvaluationPolicy"
+                    "$ref": "#/definitions/EvaluationPolicy"
                   }
                 }
               }
@@ -555,12 +760,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/KnosisEvaluationPolicy"
+                "$ref": "#/components/schemas/EvaluationPolicy"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/KnosisEvaluationPolicy"
+                "$ref": "#/components/schemas/EvaluationPolicy"
               }
             }
           }
@@ -571,7 +776,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/KnosisEvaluationPolicy"
+                  "$ref": "#/definitions/EvaluationPolicy"
                 }
               }
             }
@@ -582,7 +787,6 @@
         }
       }
     },
-
     "/mediaItem/get": {
       "get": {
         "tags": [
@@ -609,7 +813,6 @@
                 "schema": {
                   "type": "string",
                   "format": "byte"
-
                 }
               }
             }
@@ -702,7 +905,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/KnosisMediaItem"
+                    "$ref": "#/definitions/MediaItem"
                   }
                 }
               }
@@ -717,7 +920,7 @@
   },
   "components": {
     "schemas": {
-      "KnosisAvatar": {
+      "Avatar": {
         "type": "object",
         "properties": {
           "avatarId": {
@@ -731,10 +934,18 @@
               "silicon",
               "carbon"
             ]
+          },
+          "assignedChallenges": {
+            "description": "assignedChallenges",
+            "type": "array",
+            "items": {
+              "type": "Challenge",
+              "$ref": "#/components/schemas/Challenge"
+            }
           }
         }
       },
-      "KnosisDataset": {
+      "Dataset": {
         "type": "object",
         "properties": {
           "datasetId": {
@@ -743,15 +954,7 @@
             "example": "XAFKE80768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "type": {
-            "type": "string",
-            "enum": [
-              "rgb-static-photo",
-              "rgb-live-photo",
-              "rgb-video",
-              "audio-rgb-video",
-              "audio-only",
-              "text"
-            ]
+            "$ref": "#/components/schemas/DatasetTypeEnum"
           },
           "creationTimestamp": {
             "type": "string",
@@ -781,7 +984,7 @@
           }
         }
       },
-      "KnosisChallenge": {
+      "Challenge": {
         "type": "object",
         "properties": {
           "challengeId": {
@@ -817,12 +1020,8 @@
             ]
           },
           "accessType": {
-            "type": "string",
-            "enum": [
-              "public",
-              "private",
-              "confidential"
-            ]
+            "type": "ChallengeAccessTypeEnum",
+            "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
           },
           "name": {
             "type": "string",
@@ -838,10 +1037,32 @@
             "type": "string",
             "description": "[TBD] Alpha-numeric, name of dataset",
             "example": "Tag the cats"
+          },
+          "budget": {
+            "description": "budget allocated for challenge",
+            "type": "double",
+            "example": 3.14
+          },
+          "challengeStatistics": {
+            "type": "ChallengeStatistics",
+            "$ref": "#/components/schemas/ChallengeStatistics"
+          },
+          "stared": {
+            "type": "boolean",
+            "description": "[TBD] Alpha-numeric, name of dataset",
+            "example": "true"
           }
         }
       },
-      "KnosisMediaDescriptor": {
+      "ChallengeAccessTypeEnum": {
+        "type": "string",
+        "enum": [
+          "public",
+          "private",
+          "confidential"
+        ]
+      },
+      "MediaDescriptor": {
         "type": "object",
         "properties": {
           "size": {
@@ -862,7 +1083,7 @@
           }
         }
       },
-      "KnosisMediaItem": {
+      "MediaItem": {
         "type": "object",
         "properties": {
           "mediaItemId": {
@@ -897,8 +1118,8 @@
             ]
           },
           "descriptor": {
-            "type": "KnosisMediaDescriptor",
-            "$ref": "#/definitions/KnosisMediaDescriptor",
+            "type": "MediaDescriptor",
+            "$ref": "#/definitions/MediaDescriptor",
             "description": "Information about the evaluation of the accuracy of this tag."
           },
           "sharding": {
@@ -911,6 +1132,31 @@
             "$ref": "./deep-viss-common.json#/components/schemas/Image",
             "description": "Alpa-numeric, unique id of media item path. ",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          }
+        }
+      },
+      "ChallengeStatistics": {
+        "type": "object",
+        "properties": {
+          "averageRate": {
+            "description": "average payment per challenge",
+            "type": "double",
+            "example": 3.14
+          },
+          "averageCompletionTime": {
+            "description": "Average time to complete a task for a challenge",
+            "type": "integer",
+            "example": 3
+          },
+          "averageValidationRate": {
+            "description": "Average valdation per challenge",
+            "type": "double",
+            "example": 3.14
+          },
+          "paymentPerHour": {
+            "description": "Estimated payment per hour",
+            "type": "double",
+            "example": 3.14
           }
         }
       },
@@ -930,8 +1176,7 @@
           }
         }
       },
-
-      "KnosisEvaluation": {
+      "Evaluation": {
         "type": "object",
         "description": "The confidence of a merged tag (from several tags) or the overall.",
         "properties": {
@@ -942,7 +1187,7 @@
           }
         }
       },
-      "KnosisTask": {
+      "Task": {
         "type": "object",
         "properties": {
           "taskId": {
@@ -1005,7 +1250,7 @@
           }
         }
       },
-      "KnosisTag": {
+      "Tag": {
         "type": "object",
         "properties": {
           "tagId": {
@@ -1038,7 +1283,7 @@
           }
         }
       },
-      "KnosisMergedTag": {
+      "MergedTag": {
         "type": "object",
         "properties": {
           "mediaItemId": {
@@ -1065,8 +1310,8 @@
             }
           },
           "evaluation": {
-            "type": "KnosisEvaluation",
-            "$ref": "#/definitions/KnosisEvaluation",
+            "type": "Evaluation",
+            "$ref": "#/definitions/Evaluation",
             "description": "Information about the evaluation of the accuracy of this tag."
           },
           "composingTags": {
@@ -1078,7 +1323,7 @@
           }
         }
       },
-      "KnosisTaggedMediaItem": {
+      "TaggedMediaItem": {
         "type": "object",
         "properties": {
           "mediaItemId": {
@@ -1101,8 +1346,8 @@
           "mergedTags": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/KnosisMergedTag",
-              "type": "KnosisMergedTag"
+              "$ref": "#/definitions/MergedTag",
+              "type": "MergedTag"
             }
           },
           "image": {
@@ -1113,9 +1358,9 @@
           }
         }
       },
-      "KnosisEvaluationPolicy": {
+      "EvaluationPolicy": {
         "type": "object",
-        "description": "The parameters used in the evaluation of a challenge, its tasks and their KnosisTags.",
+        "description": "The parameters used in the evaluation of a challenge, its tasks and their Tags.",
         "properties": {
           "evaluationPolicyId": {
             "description": "Unique ID of evaluation policy",
@@ -1154,7 +1399,7 @@
           }
         }
       },
-      "KnosisDispatchPolicy": {
+      "DispatchPolicy": {
         "type": "object",
         "description": "The parameters used in the disaptch of a task",
         "properties": {
@@ -1179,6 +1424,17 @@
           }
         }
       },
+      "DatasetTypeEnum": {
+        "type": "string",
+        "enum": [
+          "rgb-static-photo",
+          "rgb-live-photo",
+          "rgb-video",
+          "audio-rgb-video",
+          "audio-only",
+          "text"
+        ]
+      },
       "Point2D": {
         "$ref": "deep-viss-common.json#/components/schemas/Point2D"
       },
@@ -1193,6 +1449,22 @@
       },
       "Shape2DTimeboundPolygon": {
         "$ref": "deep-viss-common.json#/components/schemas/Shape2DTimeboundPolygon"
+      },
+      "AssignUsersRequest": {
+        "type": "object",
+        "description": "assign users dto",
+        "properties": {
+          "challengeId": {
+            "description": "Unique ID of challenge",
+            "type": "string"
+          },
+          "avatarIds": {
+            "type": "array",
+            "items": {
+              "type": "String"
+            }
+          }
+        }
       }
     }
   },
