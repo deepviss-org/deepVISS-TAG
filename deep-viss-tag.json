@@ -985,6 +985,10 @@
       },
       "Challenge": {
         "type": "object",
+        "required": [
+          "status",
+          "accessType"
+        ],
         "properties": {
           "challengeId": {
             "type": "string",
@@ -1028,7 +1032,7 @@
             "example": "Dogs"
           },
           "completionPercentage": {
-            "type": "int",
+            "type": "integer",
             "description": "completion percentage of a challenge",
             "example": "70"
           },
@@ -1039,7 +1043,8 @@
           },
           "budget": {
             "description": "budget allocated for challenge",
-            "type": "double",
+            "type": "number",
+            "format": "double",
             "example": 3.14
           },
           "challengeStatistics": {
@@ -1139,22 +1144,26 @@
         "properties": {
           "averageRate": {
             "description": "average payment per challenge",
-            "type": "double",
+            "type": "number",
+            "format": "double",
             "example": 3.14
           },
           "averageCompletionTime": {
             "description": "Average time to complete a task for a challenge",
-            "type": "integer",
+            "type": "number",
+            "format": "double",
             "example": 3
           },
           "averageValidationRate": {
             "description": "Average valdation per challenge",
-            "type": "double",
+            "type": "number",
+            "format": "double",
             "example": 3.14
           },
           "paymentPerHour": {
             "description": "Estimated payment per hour",
-            "type": "double",
+            "type": "number",
+            "format": "double",
             "example": 3.14
           }
         }
@@ -1460,7 +1469,7 @@
           "avatarIds": {
             "type": "array",
             "items": {
-              "type": "String"
+              "type": "string"
             }
           }
         }
