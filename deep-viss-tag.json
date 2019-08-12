@@ -262,7 +262,7 @@
             "in": "query",
             "name": "accessType",
             "schema": {
-              "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
+              "type": "string"
             }
           },
           {
@@ -329,7 +329,7 @@
             "in": "query",
             "name": "accessType",
             "schema": {
-              "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
+              "type": "string"
             }
           },
           {
