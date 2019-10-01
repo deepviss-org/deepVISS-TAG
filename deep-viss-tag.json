@@ -53,7 +53,7 @@
         }
       }
     },
-    "/dataset/create": {
+    "/dataset": {
       "post": {
         "tags": [
           "dataset"
@@ -99,9 +99,7 @@
             "description": "Invalid status value"
           }
         }
-      }
-    },
-    "/dataset/delete": {
+      },
       "delete": {
         "tags": [
           "dataset"
@@ -142,7 +140,7 @@
         }
       }
     },
-    "/dataset/addMediaItem": {
+    "/dataset/media-item/{datasetId}": {
       "post": {
         "tags": [
           "dataset"
@@ -152,7 +150,7 @@
         "operationId": "AddMediaItem",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "datasetId",
             "schema": {
               "type": "string"
@@ -169,7 +167,7 @@
         }
       }
     },
-    "/dataset/getStaticImages": {
+    "/dataset/static-image/list": {
       "get": {
         "tags": [
           "dataset"
@@ -199,8 +197,7 @@
       }
     },
 
-
-    "/challenge/create": {
+    "/challenge": {
       "post": {
         "tags": [
           "challenge"
@@ -242,7 +239,7 @@
         }
       }
     },
-    "/challenge/listSupervisor": {
+    "/challenge/supervisor/list": {
       "get": {
         "tags": [
           "challenge"
@@ -309,7 +306,7 @@
         }
       }
     },
-    "/challenge/listCollaborator": {
+    "/challenge/collaborator/list": {
       "get": {
         "tags": [
           "challenge"
@@ -376,7 +373,7 @@
         }
       }
     },
-    "/challenge/get": {
+    "/challenge/{challengeId}": {
       "get": {
         "tags": [
           "challenge"
@@ -386,7 +383,7 @@
         "operationId": "GetChallenge",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "challengeId",
             "schema": {
               "type": "string"
@@ -411,7 +408,7 @@
         }
       }
     },
-    "/challenge/download": {
+    "/challenge/{challengeId}/download": {
       "get": {
         "tags": [
           "challenge"
@@ -421,7 +418,7 @@
         "operationId": "DownloadChallenge",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "challengeId",
             "schema": {
               "type": "string"
@@ -435,10 +432,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Challenge"
-                  }
+                  "type": "object"
                 }
               }
             }
@@ -449,7 +443,7 @@
         }
       }
     },
-    "/challenge/getTaggedItems": {
+    "/challenge/{challengeId}/tagged-item/list": {
       "get": {
         "tags": [
           "challenge"
@@ -459,7 +453,7 @@
         "operationId": "GetTaggedItems",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "challengeId",
             "schema": {
               "type": "string"
@@ -487,7 +481,7 @@
         }
       }
     },
-    "/challenge/star": {
+    "/challenge/{challengeId}/star": {
       "post": {
         "tags": [
           "challenge"
@@ -497,7 +491,7 @@
         "operationId": "StarChallenge",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "challengeId",
             "schema": {
               "type": "string"
@@ -552,7 +546,7 @@
       }
     },
 
-    "/task/get": {
+    "/task/{challengeId}": {
       "get": {
         "tags": [
           "task"
@@ -562,7 +556,7 @@
         "operationId": "GetTask",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "challengeId",
             "schema": {
               "type": "string"
@@ -587,7 +581,7 @@
         }
       }
     },
-    "/task/submit": {
+    "/task/{taskId}/submit": {
       "post": {
         "tags": [
           "task"
@@ -597,7 +591,7 @@
         "operationId": "SubmitTask",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "taskId",
             "schema": {
               "type": "string"
@@ -644,7 +638,7 @@
         }
       }
     },
-    "/dispatchPolicy/list": {
+    "/dispatch-policy/list": {
       "get": {
         "tags": [
           "dispatchPolicy"
@@ -673,7 +667,7 @@
         }
       }
     },
-    "/dispatchPolicy/create": {
+    "/dispatch-policy": {
       "post": {
         "tags": [
           "dispatchPolicy"
@@ -715,7 +709,7 @@
         }
       }
     },
-    "/evaluationPolicy/list": {
+    "/evaluation-policy/list": {
       "get": {
         "tags": [
           "evaluationPolicy"
@@ -744,7 +738,7 @@
         }
       }
     },
-    "/evaluationPolicy/create": {
+    "/evaluation-policy": {
       "post": {
         "tags": [
           "evaluationPolicy"
@@ -786,43 +780,7 @@
         }
       }
     },
-    "/mediaItem/get": {
-      "get": {
-        "tags": [
-          "mediaItem"
-        ],
-        "summary": "Retrieve media item",
-        "description": "Multiple status values can be provided with comma separated strings",
-        "operationId": "GetMediaItem",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "mediaItemUrl",
-            "schema": {
-              "type": "string"
-            },
-            "description": "media item url"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "image/png": {
-                "schema": {
-                  "type": "string",
-                  "format": "byte"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status value"
-          }
-        }
-      }
-    },
-    "/mediaItem/delete": {
+    "/media-item": {
       "delete": {
         "tags": [
           "mediaItem"
@@ -863,7 +821,51 @@
         }
       }
     },
-    "/mediaItem/list": {
+    "/media-item/{bucketName}/{mediaItem}": {
+      "get": {
+        "tags": [
+          "mediaItem"
+        ],
+        "summary": "Retrieve media item",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetMediaItem",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bucketName",
+            "schema": {
+              "type": "string"
+            },
+            "description": "bucket name"
+          },
+          {
+            "in": "path",
+            "name": "mediaItem",
+            "schema": {
+              "type": "string"
+            },
+            "description": "media item"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/media-item/{datasetId}/list": {
       "get": {
         "tags": [
           "mediaItem"
@@ -873,7 +875,7 @@
         "operationId": "GetMediaItemList",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "datasetId",
             "schema": {
               "type": "string"
@@ -986,7 +988,6 @@
       "Challenge": {
         "type": "object",
         "required": [
-          "status",
           "accessType"
         ],
         "properties": {
