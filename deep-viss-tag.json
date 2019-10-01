@@ -53,7 +53,7 @@
         }
       }
     },
-    "/dataset/create": {
+    "/dataset": {
       "post": {
         "tags": [
           "dataset"
@@ -99,9 +99,7 @@
             "description": "Invalid status value"
           }
         }
-      }
-    },
-    "/dataset/delete": {
+      },
       "delete": {
         "tags": [
           "dataset"
@@ -142,7 +140,7 @@
         }
       }
     },
-    "/dataset/addMediaItem": {
+    "/dataset/media-item/{datasetId}": {
       "post": {
         "tags": [
           "dataset"
@@ -152,7 +150,7 @@
         "operationId": "AddMediaItem",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "datasetId",
             "schema": {
               "type": "string"
@@ -169,7 +167,7 @@
         }
       }
     },
-    "/dataset/getStaticImages": {
+    "/dataset/static-image/list": {
       "get": {
         "tags": [
           "dataset"
@@ -198,9 +196,7 @@
         }
       }
     },
-
-
-    "/challenge/create": {
+    "/challenge": {
       "post": {
         "tags": [
           "challenge"
@@ -242,7 +238,7 @@
         }
       }
     },
-    "/challenge/listSupervisor": {
+    "/challenge/supervisor/list": {
       "get": {
         "tags": [
           "challenge"
@@ -309,7 +305,7 @@
         }
       }
     },
-    "/challenge/listCollaborator": {
+    "/challenge/collaborator/list": {
       "get": {
         "tags": [
           "challenge"
@@ -376,7 +372,7 @@
         }
       }
     },
-    "/challenge/get": {
+    "/challenge/{challengeId}": {
       "get": {
         "tags": [
           "challenge"
@@ -386,7 +382,7 @@
         "operationId": "GetChallenge",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "challengeId",
             "schema": {
               "type": "string"
@@ -411,7 +407,7 @@
         }
       }
     },
-    "/challenge/download": {
+    "/challenge/{challengeId}/download": {
       "get": {
         "tags": [
           "challenge"
@@ -421,7 +417,7 @@
         "operationId": "DownloadChallenge",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "challengeId",
             "schema": {
               "type": "string"
@@ -435,10 +431,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Challenge"
-                  }
+                  "type": "object"
                 }
               }
             }
@@ -449,7 +442,7 @@
         }
       }
     },
-    "/challenge/getTaggedItems": {
+    "/challenge/{challengeId}/tagged-item/list": {
       "get": {
         "tags": [
           "challenge"
@@ -459,7 +452,7 @@
         "operationId": "GetTaggedItems",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "challengeId",
             "schema": {
               "type": "string"
@@ -487,7 +480,7 @@
         }
       }
     },
-    "/challenge/star": {
+    "/challenge/{challengeId}/star": {
       "post": {
         "tags": [
           "challenge"
@@ -497,7 +490,7 @@
         "operationId": "StarChallenge",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "challengeId",
             "schema": {
               "type": "string"
@@ -551,8 +544,7 @@
         }
       }
     },
-
-    "/task/get": {
+    "/task/{challengeId}": {
       "get": {
         "tags": [
           "task"
@@ -562,7 +554,7 @@
         "operationId": "GetTask",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "challengeId",
             "schema": {
               "type": "string"
@@ -587,7 +579,7 @@
         }
       }
     },
-    "/task/submit": {
+    "/task/{taskId}/submit": {
       "post": {
         "tags": [
           "task"
@@ -597,7 +589,7 @@
         "operationId": "SubmitTask",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "taskId",
             "schema": {
               "type": "string"
@@ -644,7 +636,7 @@
         }
       }
     },
-    "/dispatchPolicy/list": {
+    "/dispatch-policy/list": {
       "get": {
         "tags": [
           "dispatchPolicy"
@@ -673,7 +665,7 @@
         }
       }
     },
-    "/dispatchPolicy/create": {
+    "/dispatch-policy": {
       "post": {
         "tags": [
           "dispatchPolicy"
@@ -715,7 +707,7 @@
         }
       }
     },
-    "/evaluationPolicy/list": {
+    "/evaluation-policy/list": {
       "get": {
         "tags": [
           "evaluationPolicy"
@@ -744,7 +736,7 @@
         }
       }
     },
-    "/evaluationPolicy/create": {
+    "/evaluation-policy": {
       "post": {
         "tags": [
           "evaluationPolicy"
@@ -786,43 +778,7 @@
         }
       }
     },
-    "/mediaItem/get": {
-      "get": {
-        "tags": [
-          "mediaItem"
-        ],
-        "summary": "Retrieve media item",
-        "description": "Multiple status values can be provided with comma separated strings",
-        "operationId": "GetMediaItem",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "mediaItemUrl",
-            "schema": {
-              "type": "string"
-            },
-            "description": "media item url"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "image/png": {
-                "schema": {
-                  "type": "string",
-                  "format": "byte"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status value"
-          }
-        }
-      }
-    },
-    "/mediaItem/delete": {
+    "/media-item": {
       "delete": {
         "tags": [
           "mediaItem"
@@ -863,7 +819,51 @@
         }
       }
     },
-    "/mediaItem/list": {
+    "/media-item/{bucketName}/{mediaItem}": {
+      "get": {
+        "tags": [
+          "mediaItem"
+        ],
+        "summary": "Retrieve media item",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetMediaItem",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bucketName",
+            "schema": {
+              "type": "string"
+            },
+            "description": "bucket name"
+          },
+          {
+            "in": "path",
+            "name": "mediaItem",
+            "schema": {
+              "type": "string"
+            },
+            "description": "media item"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/media-item/{datasetId}/list": {
       "get": {
         "tags": [
           "mediaItem"
@@ -873,7 +873,7 @@
         "operationId": "GetMediaItemList",
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "datasetId",
             "schema": {
               "type": "string"
@@ -986,7 +986,6 @@
       "Challenge": {
         "type": "object",
         "required": [
-          "status",
           "accessType"
         ],
         "properties": {
@@ -1304,6 +1303,11 @@
             "description": "Alpha-numeric, unique id of tagged object",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
+          "permanentIdentifier": {
+            "type": "PermanentIdentifier",
+            "$ref": "#/definitions/PermanentIdentifier",
+            "description": "Identifier (key) composed of several composable elements (sub-keys). Uniqueness is enforced on all segments, in their respective order."
+          },
           "objectType": {
             "type": "string",
             "description": "What type of object/event has been detected?",
@@ -1328,6 +1332,109 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "PermanentIdentifier": {
+        "type": "object",
+        "description": "The object with describes the composite identifier",
+        "properties": {
+          "hashCode": {
+            "description": "The hashcode obtained by running a SHA-512 on the binary values of the segments, in the ascending order of indexes",
+            "type": "string"
+          },
+          "segments": {
+            "description": "The segments (sub-keys) that compose the permanent identifier.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PermanentIdentifierSegment",
+              "type": "PermanentIdentifierSegment"
+            }
+          }
+        }
+      },
+      "PermanentIdentifierSegment": {
+        "type": "object",
+        "description": "The object contains the description of an identifier segment",
+        "properties": {
+          "encoding": {
+            "description": "The encoding used for deserializing the value, before distance and identity functions can be computed",
+            "type": "string",
+            "enum": [
+              "json-array",
+              "base64-binary-float",
+              "base64-binary-double",
+              "base64-binary-int32",
+              "base64-binary-int64",
+              "text-ascii",
+              "text-unicode"
+            ]
+          },
+          "index": {
+            "description": "The index of the segment, so as to guarantee strict ordering of segment comparison",
+            "type": "integer",
+            "format": "int32"
+          },
+          "weight": {
+            "description": "The weight of the distance in the total distance",
+            "type": "number",
+            "format": "double"
+          },
+          "assignmentFunction": {
+            "description": "The hashcode obtained by running a SHA-512 on the binary values of the segments, in their order. ",
+            "type": "string",
+            "enum": [
+              "machine-random-uniform",
+              "machine-timestamp",
+              "machine-identifier",
+              "remote-timestamp",
+              "remote-generated",
+              "entity-identifier",
+              "enforced-unique",
+              "sequential-enforced-volatile",
+              "sequential-enforced-persistent"
+            ]
+          },
+          "value": {
+            "description": "The serialized value of the segment",
+            "type": "string"
+          }
+        }
+      },
+      "PermanentIdentifierSegmentComparator": {
+        "type": "object",
+        "description": "The object contains the description of an identifier segment",
+        "properties": {
+          "identityFunction": {
+            "description": "The gate which is applied to determine whether two ids match",
+            "type": "string",
+            "enum": [
+              "exact",
+              "distance-threshold",
+              "similarity-threshold",
+              "correlation-threshold"
+            ]
+          },
+          "warpingSlack": {
+            "description": "Slack used for computing Dynamic Time Warping DTW or Correlated Optimized Warping. Default to zero.",
+            "type": "integer",
+            "format": "int32",
+            "example": 0
+          },
+          "distanceFunction": {
+            "description": "The distance function used",
+            "type": "string",
+            "enum": [
+              "l-negative-infinity",
+              "l-harmonic",
+              "l-geometric",
+              "l-manhattan",
+              "l-euclidean",
+              "l-positive-infinity",
+              "cosine-similarity",
+              "geodesic",
+              "pearson-correlation"
+            ]
           }
         }
       },
