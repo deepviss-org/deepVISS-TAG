@@ -1,0 +1,11 @@
+image: ilyasemenov/gitlab-ci-git-push
+
+stages:
+  - deploy
+
+deploy to production:
+  stage: deploy
+  environment: production
+  only:
+    - stable
+  script: git-push git@github.com:deepviss-org/deepVISS-TAG.git
