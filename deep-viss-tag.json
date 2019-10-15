@@ -1556,8 +1556,8 @@
       "Point3D": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Point3D"
       },
-      "Shape2DReactangle": {
-        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DReactangle"
+      "Shape2DRectangle": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DRectangle"
       },
       "Shape2DPolygon": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DPolygon"
