@@ -458,6 +458,22 @@
               "type": "string"
             },
             "description": "The identifier of the dataset"
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
         ],
         "responses": {
