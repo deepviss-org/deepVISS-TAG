@@ -407,6 +407,49 @@
         }
       }
     },
+    "/challenge/{challengeId}/force-merge": {
+      "get": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "force merge",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "ForceMergeTaggedMediaItem",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the dataset"
+          },
+          {
+            "in": "query",
+            "name": "challengeName",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the tagged media item"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Challenge"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
     "/challenge/{challengeId}/download": {
       "get": {
         "tags": [
@@ -423,6 +466,13 @@
               "type": "string"
             },
             "description": "The identifier of the dataset"
+          },
+          {
+            "in": "query",
+            "name": "force",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
@@ -614,23 +664,17 @@
           }
         ],
         "requestBody": {
-          "description": "The List of tags",
+          "description": "task object",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/Tag"
-                }
+                "$ref": "#/definitions/Task"
               }
             },
             "application/xml": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/Tag"
-                }
+                "$ref": "#/definitions/Task"
               }
             }
           }
@@ -1051,6 +1095,11 @@
             "description": "completion percentage of a challenge",
             "example": "70"
           },
+          "completionPercentageForCollaborator": {
+            "type": "integer",
+            "description": "completion percentage of a challenge for a collaborator",
+            "example": "70"
+          },
           "description": {
             "type": "string",
             "description": "[TBD] Alpha-numeric, name of dataset",
@@ -1180,6 +1229,41 @@
             "type": "number",
             "format": "double",
             "example": 3.14
+          },
+          "completionTimePassed": {
+            "description": "completion time for all the task passed miliseconds",
+            "type": "integer",
+            "format": "int64",
+            "example": 32312342
+          },
+          "completionTimeReal": {
+            "description": "completion time for all the tasks miliseconds",
+            "type": "integer",
+            "format": "int64",
+            "example": 3234234
+          },
+          "usersWorkTime": {
+            "description": "graphs",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "description":" avatar id",
+                  "type": "string"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -1229,7 +1313,8 @@
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "attemptSequenceNumber": {
-            "type": "string",
+            "type": "integer",
+            "format": "int32",
             "description": "Identifies the number of evaluation attempts performed on this specific media item.",
             "example": 2
           },
@@ -1258,7 +1343,8 @@
               "passed",
               "failed",
               "skipped",
-              "timed-out"
+              "timed-out",
+              "permamnently-failed"
             ]
           },
           "challengeName": {
@@ -1270,6 +1356,16 @@
             "type": "string",
             "description": "[TBD] Alpha-numeric, name of dataset",
             "example": "Tag the cats"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tag",
+              "type": "Point2D"
+            }
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/TaskResolution"
           }
         }
       },
@@ -1457,6 +1553,11 @@
       "TaggedMediaItem": {
         "type": "object",
         "properties": {
+          "taggedMediaItemId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of tagged object",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
           "mediaItemId": {
             "type": "string",
             "description": "Alpha-numeric, unique id of tagged object",
@@ -1565,6 +1666,17 @@
           "audio-only",
           "text"
         ]
+      },
+      "TaskResolution": {
+        "type": "object",
+        "description": "Information about a task",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "description",
+            "example": "Reported for ..."
+          }
+        }
       },
       "Point2D": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Point2D"
