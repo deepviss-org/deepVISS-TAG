@@ -473,6 +473,13 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "in": "query",
+            "name": "X-Auth-Credential",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
