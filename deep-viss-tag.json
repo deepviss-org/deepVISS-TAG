@@ -405,6 +405,55 @@
             "description": "Invalid status value"
           }
         }
+      },
+      "patch": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Update challenge.",
+        "description": "",
+        "operationId": "PatchChallenge",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the dataset"
+          }
+        ],
+        "requestBody": {
+          "description": "The new challenge object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchChallenge"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchChallenge"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Challenge"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
       }
     },
     "/challenge/{challengeId}/force-merge": {
@@ -472,13 +521,6 @@
             "name": "force",
             "schema": {
               "type": "boolean"
-            }
-          },
-          {
-            "in": "query",
-            "name": "X-Auth-Credential",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -1126,6 +1168,41 @@
             "type": "boolean",
             "description": "[TBD] Alpha-numeric, name of dataset",
             "example": "true"
+          }
+        }
+      },
+      "PatchChallenge": {
+        "type": "object",
+        "properties": {
+          "evaluationPolicyId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of evaluation policy",
+            "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "dispatchPolicyId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of dispatch policy",
+            "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "accessType": {
+            "type": "ChallengeAccessTypeEnum",
+            "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
+          },
+          "name": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, name of dataset",
+            "example": "Dogs"
+          },
+          "description": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, name of dataset",
+            "example": "Tag the cats"
+          },
+          "budget": {
+            "description": "budget allocated for challenge",
+            "type": "number",
+            "format": "double",
+            "example": 3.14
           }
         }
       },
