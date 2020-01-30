@@ -499,7 +499,7 @@
         }
       }
     },
-    "/challenge/{challengeId}/download": {
+    "/challenge/{challengeId}/download/{shard}": {
       "get": {
         "tags": [
           "challenge"
@@ -514,7 +514,66 @@
             "schema": {
               "type": "string"
             },
-            "description": "The identifier of the dataset"
+            "description": "The identifier of the challenge"
+          },
+          {
+            "in": "path",
+            "name": "shard",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The identifier of the shard"
+          },
+          {
+            "in": "query",
+            "name": "X-Auth-Credential",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/x-tar": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/challenge/{challengeId}/archive/{shard}": {
+      "get": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Archive shard from challenges",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "ArchiveShard",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the challenge"
+          },
+          {
+            "in": "path",
+            "name": "shard",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The identifier of the shard"
           },
           {
             "in": "query",
@@ -530,7 +589,45 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/definitions/ArchivedShard"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/challenge/{challengeId}/archive/list": {
+      "get": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Get archive list from challenges",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "ArchiveShardsList",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the challenge"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ArchivedShard"
+                  }
                 }
               }
             }
@@ -1357,13 +1454,13 @@
         "properties": {
           "block": {
             "description": "TBD",
-            "type": "number",
-            "format": "double"
+            "type": "integer",
+            "format": "int32"
           },
           "shard": {
             "description": "TBD",
-            "type": "number",
-            "format": "double"
+            "type": "integer",
+            "format": "int32"
           }
         }
       },
@@ -1790,6 +1887,48 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "ArchivedShard": {
+        "type": "object",
+        "properties": {
+          "challengeId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of challenge. ",
+            "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "shard": {
+            "description": "TBD",
+            "type": "integer",
+            "format": "int32"
+          },
+          "archiveName": {
+            "type": "string",
+            "description": "name of the archived shard",
+            "example": "challenge"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
+          },
+          "lastUpdateTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
+          },
+          "archiveCompletionPercentage": {
+            "type": "number",
+            "format": "double",
+            "description": "completion percentage of a challenge",
+            "example": "70"
+          },
+          "currentCompletionPercentage": {
+            "type": "number",
+            "format": "double",
+            "description": "completion percentage of a challenge",
+            "example": "70"
           }
         }
       }
