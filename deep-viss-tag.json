@@ -607,7 +607,7 @@
         ],
         "summary": "Get archive list from challenges",
         "description": "Multiple status values can be provided with comma separated strings",
-        "operationId": "ArchiveShardsList",
+        "operationId": "ArchivedShardList",
         "parameters": [
           {
             "in": "path",
