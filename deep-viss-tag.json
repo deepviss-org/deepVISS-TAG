@@ -53,6 +53,41 @@
         }
       }
     },
+    "/dataset/{datasetId}": {
+      "get": {
+        "tags": [
+          "dataset"
+        ],
+        "summary": "Retrieve dataset info",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetDataset",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "datasetId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the dataset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Dataset"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
     "/dataset": {
       "post": {
         "tags": [
@@ -712,6 +747,45 @@
         }
       }
     },
+    "/challenge/{challengeId}/statistics": {
+      "get": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Get challenge statistics",
+        "description": "",
+        "operationId": "StatisticsChallenge",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChallengeStatistics"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChallengeStatistics"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
     "/challenge/assign": {
       "post": {
         "tags": [
@@ -1248,10 +1322,6 @@
             "type": "number",
             "format": "double",
             "example": 3.14
-          },
-          "challengeStatistics": {
-            "type": "ChallengeStatistics",
-            "$ref": "#/components/schemas/ChallengeStatistics"
           },
           "stared": {
             "type": "boolean",
