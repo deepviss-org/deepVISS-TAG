@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "description": "DeepVISS (Deep Vision Interoperability Specification Standard) allows several computer vision solutions to produce, consume and exchange events in the same format.",
-    "version": "2.0.0",
+    "version": "1.2.0",
     "title": "DeepVISS TAG",
     "termsOfService": "https://deepviss.org",
     "contact": {
@@ -273,22 +273,15 @@
         }
       }
     },
-    "/challenge/list": {
+    "/challenge/broker/list": {
       "get": {
         "tags": [
           "challenge"
         ],
         "summary": "Retrieve list of challenges",
         "description": "Multiple status values can be provided with comma separated strings",
-        "operationId": "GetChallengeList",
+        "operationId": "GetChallengeListBroker",
         "parameters": [
-          {
-            "in": "query",
-            "name": "role",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "in": "query",
             "name": "challengeName",
@@ -805,6 +798,41 @@
           {
             "in": "path",
             "name": "challengeId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/challenge/{challengeId}/assign-tenant/{tenantId}": {
+      "post": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Star a public challenge.",
+        "description": "",
+        "operationId": "AssignTenantToChallenge",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "tenantId",
             "schema": {
               "type": "string"
             }
