@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "description": "DeepVISS (Deep Vision Interoperability Specification Standard) allows several computer vision solutions to produce, consume and exchange events in the same format.",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "title": "DeepVISS TAG",
     "termsOfService": "https://deepviss.org",
     "contact": {
@@ -263,6 +263,80 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/definitions/Challenge"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/challenge/list": {
+      "get": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Retrieve list of challenges",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetChallengeList",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "challengeName",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "accessType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "liked",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Challenge"
+                  }
                 }
               }
             }
@@ -1370,6 +1444,7 @@
         "enum": [
           "public",
           "private",
+          "spot",
           "confidential"
         ]
       },
