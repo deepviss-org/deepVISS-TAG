@@ -849,6 +849,45 @@
         }
       }
     },
+    "/challenge/{challengeId}/reject": {
+      "post": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Star a public challenge.",
+        "description": "",
+        "operationId": "RejectChallenge",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "challengeId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The challenge object to be created",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
     "/challenge/{challengeId}/statistics": {
       "get": {
         "tags": [
@@ -1388,13 +1427,18 @@
             "format": "date-time",
             "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
           },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "inProgress",
+              "completed",
+              "rejected"
+            ]
+          },
           "accessType": {
             "type": "ChallengeAccessTypeEnum",
             "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
-          },
-          "status": {
-            "type": "ChallengeStatusEnum",
-            "$ref": "#/components/schemas/ChallengeStatusEnum"
           },
           "name": {
             "type": "string",
@@ -1471,15 +1515,6 @@
           "private",
           "spot",
           "confidential"
-        ]
-      },
-      "ChallengeStatusEnum": {
-        "type": "string",
-        "enum": [
-          "pending",
-          "inProgress",
-          "completed",
-          "rejected"
         ]
       },
       "MediaDescriptor": {
