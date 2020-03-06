@@ -1388,16 +1388,13 @@
             "format": "date-time",
             "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
           },
-          "status": {
-            "type": "string",
-            "enum": [
-              "open",
-              "closed"
-            ]
-          },
           "accessType": {
             "type": "ChallengeAccessTypeEnum",
             "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
+          },
+          "status": {
+            "type": "ChallengeStatusEnum",
+            "$ref": "#/components/schemas/ChallengeStatusEnum"
           },
           "name": {
             "type": "string",
@@ -1474,6 +1471,15 @@
           "private",
           "spot",
           "confidential"
+        ]
+      },
+      "ChallengeStatusEnum": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "inProgress",
+          "completed",
+          "rejected"
         ]
       },
       "MediaDescriptor": {
