@@ -1428,13 +1428,8 @@
             "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "inProgress",
-              "completed",
-              "rejected"
-            ]
+            "type": "ChallengeStatusEnum",
+            "$ref": "#/components/schemas/ChallengeStatusEnum"
           },
           "accessType": {
             "type": "ChallengeAccessTypeEnum",
@@ -1515,6 +1510,15 @@
           "private",
           "spot",
           "confidential"
+        ]
+      },
+      "ChallengeStatusEnum": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "inProgress",
+          "completed",
+          "rejected"
         ]
       },
       "MediaDescriptor": {
