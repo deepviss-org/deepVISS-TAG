@@ -1465,6 +1465,48 @@
             "type": "boolean",
             "description": "[TBD] Alpha-numeric, name of dataset",
             "example": "true"
+          },
+          "supplierTenantId": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, name of supplierTenantId",
+            "example": "Dogs"
+          },
+          "resolution": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, name of dataset",
+            "example": "Tag the cats"
+          },
+          "demanderTenantId": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, name of demanderTenantId",
+            "example": "Dogs"
+          },
+          "datasetMetadata": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "[TBD] Alpha-numeric, name of dataset",
+                "example": "Dogs"
+              },
+              "mediaItems": {
+                "type": "integer",
+                "description": "estimated Tags Per Media Item",
+                "example": "1000"
+              }
+            }
+          },
+          "tagType": {
+            "type": "string",
+            "enum": [
+              "rectangle",
+              "polygon"
+            ]
+          },
+          "estimatedTagsPerMediaItem": {
+            "type": "integer",
+            "description": "estimated Tags Per Media Item",
+            "example": "4"
           }
         }
       },
