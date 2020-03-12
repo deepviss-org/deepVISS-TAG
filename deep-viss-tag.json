@@ -1481,6 +1481,11 @@
             "description": "[TBD] Alpha-numeric, name of demanderTenantId",
             "example": "Dogs"
           },
+          "initialNumberOfShards": {
+            "type": "integer",
+            "description": "shards in dataset",
+            "example": "4"
+          },
           "datasetMetadata": {
             "type": "object",
             "properties": {
@@ -1493,6 +1498,11 @@
                 "type": "integer",
                 "description": "estimated Tags Per Media Item",
                 "example": "1000"
+              },
+              "numberOfShards": {
+                "type": "integer",
+                "description": "shards in dataset",
+                "example": "4"
               }
             }
           },
