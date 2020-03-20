@@ -1553,7 +1553,7 @@
             "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
           },
           "tenantRole": {
-            "type": "ChallengeAccessTypeEnum",
+            "type": "ChallengeTenantRoleEnum",
             "$ref": "#/components/schemas/ChallengeTenantRoleEnum"
           },
           "name": {
