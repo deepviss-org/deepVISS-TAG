@@ -238,7 +238,7 @@
         ],
         "summary": "get estimated cost for storage",
         "description": "optional parameter datasetId for new shards",
-        "operationId": "AddMediaItem",
+        "operationId": "getStorageCost",
         "parameters": [
           {
             "in": "query",
