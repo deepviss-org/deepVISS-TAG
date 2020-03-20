@@ -232,7 +232,7 @@
       }
     },
     "/dataset/cost": {
-      "post": {
+      "get": {
         "tags": [
           "dataset"
         ],
@@ -971,6 +971,48 @@
         }
       }
     },
+    "/challenge/cost": {
+      "post": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "get estimated cost for challenge",
+        "description": "estimage challenge budget",
+        "operationId": "getChallengeCost",
+        "parameters": [],
+        "requestBody": {
+          "description": "The challenge options",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChallengeBudgetRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ChallengeBudgetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChallengeBudgetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
     "/challenge/assign": {
       "post": {
         "tags": [
@@ -1510,6 +1552,10 @@
             "type": "ChallengeAccessTypeEnum",
             "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
           },
+          "tenantRole": {
+            "type": "ChallengeAccessTypeEnum",
+            "$ref": "#/components/schemas/ChallengeTenantRoleEnum"
+          },
           "name": {
             "type": "string",
             "description": "[TBD] Alpha-numeric, name of dataset",
@@ -1647,6 +1693,57 @@
           "completed",
           "rejected"
         ]
+      },
+      "ChallengeTenantRoleEnum": {
+        "type": "string",
+        "enum": [
+          "SUPPLIER",
+          "BROKER",
+          "DEMANDER"
+        ]
+      },
+      "ChallengeBudgetRequest": {
+        "type": "object",
+        "properties": {
+          "datasetId": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, unique id of dataset",
+            "example": "XAFKE80768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "evaluationPolicyId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of evaluation policy",
+            "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "dispatchPolicyId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of dispatch policy",
+            "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "tagType": {
+            "type": "string",
+            "enum": [
+              "rectangle",
+              "polygon"
+            ]
+          },
+          "estimatedTagsPerMediaItem": {
+            "type": "integer",
+            "description": "estimated Tags Per Media Item",
+            "example": "4"
+          }
+        }
+      },
+      "ChallengeBudgetResponse": {
+        "type": "object",
+        "properties": {
+          "estimatedBudget": {
+            "type": "number",
+            "format": "double",
+            "description": "estimated budget for challenge",
+            "example": 3.14
+          }
+        }
       },
       "MediaDescriptor": {
         "type": "object",
