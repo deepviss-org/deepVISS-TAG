@@ -1635,7 +1635,8 @@
             ]
           },
           "estimatedTagsPerMediaItem": {
-            "type": "integer",
+            "type": "number",
+            "format": "double",
             "description": "estimated Tags Per Media Item",
             "example": "4"
           }
