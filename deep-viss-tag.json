@@ -231,6 +231,40 @@
         }
       }
     },
+    "/dataset/cost": {
+      "post": {
+        "tags": [
+          "dataset"
+        ],
+        "summary": "get estimated cost for storage",
+        "description": "optional parameter datasetId for new shards",
+        "operationId": "AddMediaItem",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "datasetId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/DatasetStorageCost"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
     "/challenge": {
       "post": {
         "tags": [
@@ -1393,6 +1427,31 @@
             "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Image",
             "description": "Alpa-numeric, unique id of media item path. ",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          }
+        }
+      },
+      "DatasetStorageCost": {
+        "type": "object",
+        "properties": {
+          "datasetId": {
+            "type": "string",
+            "description": "[TBD] Alpha-numeric, unique id of dataset",
+            "example": "XAFKE80768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "type": {
+            "$ref": "#/components/schemas/DatasetTypeEnum"
+          },
+          "currentCost": {
+            "description": "cost for storage in dollars per month",
+            "type": "number",
+            "format": "double",
+            "example": 3.14
+          },
+          "totalCost": {
+            "description": "cost for storage in dollars per month",
+            "type": "number",
+            "format": "double",
+            "example": 3.14
           }
         }
       },
