@@ -1628,11 +1628,8 @@
             }
           },
           "tagType": {
-            "type": "string",
-            "enum": [
-              "rectangle",
-              "polygon"
-            ]
+            "type": "ChallengeTagTypeEnum",
+            "$ref": "#/components/schemas/ChallengeTagTypeEnum"
           },
           "estimatedTagsPerMediaItem": {
             "type": "number",
@@ -1703,6 +1700,13 @@
           "DEMANDER"
         ]
       },
+      "ChallengeTagTypeEnum": {
+        "type": "string",
+        "enum": [
+          "rectangle",
+          "polygon"
+        ]
+      },
       "ChallengeBudgetRequest": {
         "type": "object",
         "properties": {
@@ -1722,11 +1726,8 @@
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "tagType": {
-            "type": "string",
-            "enum": [
-              "rectangle",
-              "polygon"
-            ]
+            "type": "ChallengeTagTypeEnum",
+            "$ref": "#/components/schemas/ChallengeTagTypeEnum"
           },
           "estimatedTagsPerMediaItem": {
             "type": "integer",
