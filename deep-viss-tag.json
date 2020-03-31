@@ -1995,7 +1995,14 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Tag",
-              "type": "Point2D"
+              "type": "Tag"
+            }
+          },
+          "edges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Edge",
+              "type": "Edge"
             }
           },
           "resolution": {
