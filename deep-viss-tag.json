@@ -2334,6 +2334,9 @@
       "Shape2DTimeboundPolygon": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DTimeboundPolygon"
       },
+      "Shape2DTextBlock": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DTextBlock"
+      },
       "AssignUsersRequest": {
         "type": "object",
         "description": "assign users dto",
