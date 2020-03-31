@@ -1636,6 +1636,22 @@
             "format": "double",
             "description": "estimated Tags Per Media Item",
             "example": "4"
+          },
+          "nodeTaxonomy": {
+            "type": "array",
+            "description": "taxonomy list for nodeType",
+            "items": {
+              "type": "string"
+            },
+            "example": "consumer,overdue"
+          },
+          "edgeTaxonomy": {
+            "type": "array",
+            "description": "taxonomy list for edgeType",
+            "items": {
+              "type": "string"
+            },
+            "example": "is a, has a"
           }
         }
       },
@@ -2000,7 +2016,7 @@
             "format": "date-time",
             "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00)"
           },
-          "objectType": {
+          "nodeType": {
             "type": "string",
             "description": "What type of object/event has been detected?",
             "example": "vehicle"
@@ -2038,7 +2054,7 @@
             "$ref": "#/definitions/PermanentIdentifier",
             "description": "Identifier (key) composed of several composable elements (sub-keys). Uniqueness is enforced on all segments, in their respective order."
           },
-          "objectType": {
+          "nodeType": {
             "type": "string",
             "description": "What type of object/event has been detected?",
             "example": "vehicle"
@@ -2366,6 +2382,44 @@
             "format": "double",
             "description": "completion percentage of a challenge",
             "example": "70"
+          }
+        }
+      },
+      "Edge": {
+        "type": "object",
+        "properties": {
+          "tagId1": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of tagged object",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "tagId2": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of tagged object",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "edgeType": {
+            "type": "string",
+            "description": "What type of relation is between 2 objects",
+            "example": "is a"
+          },
+          "relativePosition": {
+            "type": "string",
+            "enum": [
+              "top",
+              "left",
+              "right",
+              "bottom",
+              "top-left",
+              "top-right",
+              "bottom-left",
+              "bottom-right"
+            ]
+          },
+          "distance": {
+            "description": "budget allocated for challenge",
+            "type": "integer",
+            "example": 314
           }
         }
       }
