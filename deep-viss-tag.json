@@ -1922,9 +1922,14 @@
         "description": "The confidence of a merged tag (from several tags) or the overall.",
         "properties": {
           "confidence": {
-            "description": "The confidence of the merged tag (from several tags), based on IoU (Intersection over Union) of the composing tags",
+            "description": "The confidence of the merged tag (from several tags), based on IoU (Intersection over Union) of the composing tags. The confidence is the reduce form of the SubjectiveOpinion, representing only its belief part.",
             "type": "number",
             "format": "double"
+          },
+          "subjectiveOpinion": {
+            "description": "The normalized form of InternalSubjectiveOpinion. Confidence represented the belief components of this object.",
+            "type": "SubjectiveOpinion",
+            "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/SubjectiveOpinion"
           }
         }
       },
@@ -2040,6 +2045,11 @@
             "type": "string",
             "description": "Alpha-numeric, unique id of task object",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "subjectiveOpinion":
+          {
+            "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/InternalSubjectiveOpinion",
+            "type": "InternalSubjectiveOpinion"
           }
         }
       },
@@ -2137,15 +2147,16 @@
             "description": "The hashcode obtained by running a SHA-512 on the binary values of the segments, in their order. ",
             "type": "string",
             "enum": [
+              "hashed-from-data",
               "machine-random-uniform",
               "machine-timestamp",
               "machine-identifier",
               "remote-timestamp",
               "remote-generated",
-              "entity-identifier",
-              "enforced-unique",
-              "sequential-enforced-volatile",
-              "sequential-enforced-persistent"
+              "entity-identifier-ledger",
+              "enforced-unique-ledger",
+              "sequential-enforced-volatile-ledger",
+              "sequential-enforced-persistent-ledger"
             ]
           },
           "value": {
@@ -2334,8 +2345,8 @@
       "Shape2DTimeboundPolygon": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DTimeboundPolygon"
       },
-      "Shape2DTextBlock": {
-        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DTextBlock"
+      "Shape2DRectangularTextBlock": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DRectangularTextBlock"
       },
       "AssignUsersRequest": {
         "type": "object",
@@ -2359,7 +2370,7 @@
           "challengeId": {
             "type": "string",
             "description": "Alpha-numeric, unique id of challenge. ",
-            "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+            "example": "1CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "shard": {
             "description": "TBD",
@@ -2401,12 +2412,12 @@
           "tagId1": {
             "type": "string",
             "description": "Alpha-numeric, unique id of tagged object",
-            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+            "example": "87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "tagId2": {
             "type": "string",
             "description": "Alpha-numeric, unique id of tagged object",
-            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+            "example": "7300124455B07E91CB289F87791D78064ECC93754F19B13D419489F1"
           },
           "edgeType": {
             "type": "string",
