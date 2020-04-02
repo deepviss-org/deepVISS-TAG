@@ -1883,7 +1883,7 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "description":" avatar id",
+                  "description": " avatar id",
                   "type": "string"
                 },
                 "data": {
@@ -2021,7 +2021,7 @@
           "tagId": {
             "type": "string",
             "description": "Alpha-numeric, unique id of tagged object",
-            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+            "example": "B07E91CB289F87791D78064ECC93754F19B13D419489F162"
           },
           "submissionTimestamp": {
             "type": "string",
@@ -2030,7 +2030,7 @@
           },
           "nodeType": {
             "type": "string",
-            "description": "What type of object/event has been detected?",
+            "description": "What does the object that has been detected represent. Can be extended to discrete histogram of types.",
             "example": "vehicle"
           },
           "geometry": {
@@ -2044,10 +2044,9 @@
           "taskId": {
             "type": "string",
             "description": "Alpha-numeric, unique id of task object",
-            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+            "example": "1CB289F87791D78064ECC93754F19B13D419489F162A"
           },
-          "subjectiveOpinion":
-          {
+          "subjectiveOpinion": {
             "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/InternalSubjectiveOpinion",
             "type": "InternalSubjectiveOpinion"
           }
@@ -2348,6 +2347,19 @@
       "Shape2DRectangularTextBlock": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DRectangularTextBlock"
       },
+      "Style": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Style"
+      },
+      "Transliteration": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Transliteration"
+      },
+      "SubjectiveOpinion": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/SubjectiveOpinion"
+      },
+      "InternalSubjectiveOpinion": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/InternalSubjectiveOpinion"
+      },
+
       "AssignUsersRequest": {
         "type": "object",
         "description": "assign users dto",
@@ -2409,38 +2421,35 @@
       "Edge": {
         "type": "object",
         "properties": {
-          "tagId1": {
+          "sourceTagId": {
             "type": "string",
-            "description": "Alpha-numeric, unique id of tagged object",
+            "description": "Need to find solution for unifying tag id's across taggers-collaborators.Alpha-numeric, unique id of tagged object",
             "example": "87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
-          "tagId2": {
+          "destinationTagID": {
             "type": "string",
-            "description": "Alpha-numeric, unique id of tagged object",
+            "description": "Need to find solution for unifying tag id's across taggers-collaborators. Alpha-numeric, unique id of tagged object",
             "example": "7300124455B07E91CB289F87791D78064ECC93754F19B13D419489F1"
           },
           "edgeType": {
             "type": "string",
-            "description": "What type of relation is between 2 objects",
-            "example": "is a"
+            "description": "The type of the relationship between the two objects. Can be extended to discrete histogram of types. All types must belong to taxonomy or the challenge must allow for open-taxonomy.",
+            "example": "has-greater-area"
           },
-          "relativePosition": {
-            "type": "string",
-            "enum": [
-              "top",
-              "left",
-              "right",
-              "bottom",
-              "top-left",
-              "top-right",
-              "bottom-left",
-              "bottom-right"
-            ]
+          "slack": {
+            "type": "number",
+            "format": "double",
+            "description": "How much the edge can allow for the nodes to move without changing its length?",
+            "example": 0.0
           },
-          "distance": {
-            "description": "budget allocated for challenge",
-            "type": "integer",
-            "example": 314
+          "elasticity": {
+            "type": "number",
+            "format": "double",
+            "description": "How much the edge can extended or contracted?"
+          },
+          "subjectiveOpinion": {
+            "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/InternalSubjectiveOpinion",
+            "type": "InternalSubjectiveOpinion"
           }
         }
       }
@@ -2449,5 +2458,6 @@
   "externalDocs": {
     "description": "Find out more about DeepVISS",
     "url": "https://deepviss.org"
+
   }
 }
