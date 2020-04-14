@@ -2047,7 +2047,7 @@
             "description": "Alpha-numeric, unique id of task object",
             "example": "1CB289F87791D78064ECC93754F19B13D419489F162A"
           },
-          "subjectiveOpinion": {
+          "internalSubjectiveOpinion": {
             "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/InternalSubjectiveOpinion",
             "type": "InternalSubjectiveOpinion"
           }
@@ -2448,7 +2448,7 @@
             "format": "double",
             "description": "How much the edge can extended or contracted?"
           },
-          "subjectiveOpinion": {
+          "internalSubjectiveOpinion": {
             "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/InternalSubjectiveOpinion",
             "type": "InternalSubjectiveOpinion"
           }
