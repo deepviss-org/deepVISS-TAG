@@ -2432,6 +2432,18 @@
             "description": "Need to find solution for unifying tag id's across taggers-collaborators. Alpha-numeric, unique id of tagged object",
             "example": "7300124455B07E91CB289F87791D78064ECC93754F19B13D419489F1"
           },
+          "sourceTextBoxId": {
+            "type": "integer",
+            "format": "int32",
+            "description": "textBox id from inside sourceTag",
+            "example": "1"
+          },
+          "destinationTextBoxId": {
+            "type": "integer",
+            "format": "int32",
+            "description": "textBox id from inside destinationTag",
+            "example": "1"
+          },
           "edgeType": {
             "type": "string",
             "description": "The type of the relationship between the two objects. Can be extended to discrete histogram of types. All types must belong to taxonomy or the challenge must allow for open-taxonomy.",
