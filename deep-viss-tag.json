@@ -1427,11 +1427,8 @@
             "example": "UTWKE80768EF05389899TDD196397EDFDDFBC81751818B7FD13001IU455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "lifeForm": {
-            "type": "string",
-            "enum": [
-              "silicon",
-              "carbon"
-            ]
+            "type": "LifeFormEnum",
+            "$ref": "#/components/schemas/LifeFormEnum"
           },
           "assignedChallenges": {
             "description": "assignedChallenges",
@@ -1442,6 +1439,13 @@
             }
           }
         }
+      },
+      "LifeFormEnum": {
+        "type": "string",
+        "enum": [
+          "silicon",
+          "carbon"
+        ]
       },
       "Dataset": {
         "type": "object",
@@ -1652,6 +1656,13 @@
               "type": "string"
             },
             "example": "is a, has a"
+          },
+          "completionPercentages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChallengeCompletionPercentage",
+              "type": "ChallengeCompletionPercentage"
+            }
           }
         }
       },
@@ -1762,6 +1773,45 @@
             "format": "double",
             "description": "estimated budget for challenge",
             "example": 3.14
+          }
+        }
+      },
+      "ChallengeStage": {
+        "type": "object",
+        "properties": {
+          "stageNumber": {
+            "description": "stage number",
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "percentage": {
+            "description": "completion percentage for this stage",
+            "type": "integer",
+            "format": "int32",
+            "example": 100
+          },
+          "operator": {
+            "type": "LifeFormEnum",
+            "$ref": "#/components/schemas/LifeFormEnum"
+          }
+        }
+      },
+      "ChallengeCompletionPercentage": {
+        "type": "object",
+        "properties": {
+          "shard": {
+            "description": "shard number",
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "stages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChallengeStage",
+              "type": "ChallengeStage"
+            }
           }
         }
       },
