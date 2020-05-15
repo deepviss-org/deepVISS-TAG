@@ -2148,110 +2148,6 @@
           }
         }
       },
-      "PermanentIdentifier": {
-        "type": "object",
-        "description": "The object with describes the composite identifier",
-        "properties": {
-          "hashCode": {
-            "description": "The hashcode obtained by running a SHA-512 on the binary values of the segments, in the ascending order of indexes",
-            "type": "string"
-          },
-          "segments": {
-            "description": "The segments (sub-keys) that compose the permanent identifier.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PermanentIdentifierSegment",
-              "type": "PermanentIdentifierSegment"
-            }
-          }
-        }
-      },
-      "PermanentIdentifierSegment": {
-        "type": "object",
-        "description": "The object contains the description of an identifier segment",
-        "properties": {
-          "encoding": {
-            "description": "The encoding used for deserializing the value, before distance and identity functions can be computed",
-            "type": "string",
-            "enum": [
-              "json-array",
-              "base64-binary-float",
-              "base64-binary-double",
-              "base64-binary-int32",
-              "base64-binary-int64",
-              "text-ascii",
-              "text-unicode"
-            ]
-          },
-          "index": {
-            "description": "The index of the segment, so as to guarantee strict ordering of segment comparison",
-            "type": "integer",
-            "format": "int32"
-          },
-          "weight": {
-            "description": "The weight of the distance in the total distance",
-            "type": "number",
-            "format": "double"
-          },
-          "assignmentFunction": {
-            "description": "The hashcode obtained by running a SHA-512 on the binary values of the segments, in their order. ",
-            "type": "string",
-            "enum": [
-              "hashed-from-data",
-              "machine-random-uniform",
-              "machine-timestamp",
-              "machine-identifier",
-              "remote-timestamp",
-              "remote-generated",
-              "entity-identifier-ledger",
-              "enforced-unique-ledger",
-              "sequential-enforced-volatile-ledger",
-              "sequential-enforced-persistent-ledger"
-            ]
-          },
-          "value": {
-            "description": "The serialized value of the segment",
-            "type": "string"
-          }
-        }
-      },
-      "PermanentIdentifierSegmentComparator": {
-        "type": "object",
-        "description": "The object contains the description of an identifier segment",
-        "properties": {
-          "identityFunction": {
-            "description": "The gate which is applied to determine whether two ids match",
-            "type": "string",
-            "enum": [
-              "exact",
-              "distance-threshold",
-              "similarity-threshold",
-              "correlation-threshold"
-            ]
-          },
-          "warpingSlack": {
-            "description": "Slack used for computing Dynamic Time Warping DTW or Correlated Optimized Warping. Default to zero.",
-            "type": "integer",
-            "format": "int32",
-            "example": 0
-          },
-          "distanceFunction": {
-            "description": "The distance function used",
-            "type": "string",
-            "enum": [
-              "l-negative-infinity",
-              "l-harmonic",
-              "l-geometric",
-              "l-manhattan",
-              "l-euclidean",
-              "l-positive-infinity",
-              "cosine-similarity",
-              "geodesic",
-              "pearson-correlation"
-            ]
-          }
-        }
-      },
       "TaggedMediaItem": {
         "type": "object",
         "properties": {
@@ -2515,6 +2411,9 @@
             "type": "InternalSubjectiveOpinion"
           }
         }
+      },
+      "PermanentIdentifier": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/PermanentIdentifier"
       }
     }
   },
