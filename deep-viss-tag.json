@@ -2188,6 +2188,13 @@
             "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Image",
             "description": "Alpa-numeric, unique id of media item path. ",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "mergedEdges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Edge",
+              "type": "Edge"
+            }
           }
         }
       },
