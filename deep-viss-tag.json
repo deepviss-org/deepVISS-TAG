@@ -1073,7 +1073,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Task"
+                  "$ref": "#/definitions/GetTaskResponse"
                 }
               }
             }
@@ -2148,6 +2148,9 @@
           }
         }
       },
+      "PermanentIdentifier": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/PermanentIdentifier"
+      },
       "TaggedMediaItem": {
         "type": "object",
         "properties": {
@@ -2412,8 +2415,19 @@
           }
         }
       },
-      "PermanentIdentifier": {
-        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/PermanentIdentifier"
+      "GetTaskResponse": {
+        "type": "object",
+        "description": "response from get task",
+        "properties": {
+          "taskId": {
+            "description": "Unique ID of task",
+            "type": "string"
+          },
+          "taggedMediaItem": {
+            "type": "TaggedMediaItem",
+            "$ref": "#/components/schemas/TaggedMediaItem"
+          }
+        }
       }
     }
   },
