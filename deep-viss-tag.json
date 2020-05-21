@@ -2389,14 +2389,12 @@
             "example": "7300124455B07E91CB289F87791D78064ECC93754F19B13D419489F1"
           },
           "sourceTextBoxId": {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": "textBox id from inside sourceTag",
             "example": "1"
           },
           "destinationTextBoxId": {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": "textBox id from inside destinationTag",
             "example": "1"
           },
