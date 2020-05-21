@@ -1732,7 +1732,7 @@
         "enum": [
           "rectangle",
           "polygon",
-          "RectangularTextBlock"
+          "rectangular_text_block"
         ]
       },
       "ChallengeBudgetRequest": {
