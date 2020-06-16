@@ -2098,6 +2098,11 @@
       "MergedTag": {
         "type": "object",
         "properties": {
+          "mergedTagId": {
+            "type": "string",
+            "description": "Alpha-numeric, unique id of tagged object",
+            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
           "mediaItemId": {
             "type": "string",
             "description": "Alpha-numeric, unique id of tagged object",
