@@ -65,6 +65,7 @@
           {
             "in": "path",
             "name": "datasetId",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -187,6 +188,7 @@
           {
             "in": "path",
             "name": "datasetId",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -530,6 +532,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -563,6 +566,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -614,6 +618,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -657,6 +662,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -665,6 +671,7 @@
           {
             "in": "path",
             "name": "shard",
+            "required": true,
             "schema": {
               "type": "integer"
             },
@@ -700,6 +707,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -708,6 +716,7 @@
           {
             "in": "path",
             "name": "shard",
+            "required": true,
             "schema": {
               "type": "integer"
             },
@@ -750,6 +759,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -788,6 +798,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -842,6 +853,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -870,6 +882,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -877,6 +890,7 @@
           {
             "in": "path",
             "name": "tenantId",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -905,6 +919,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -944,6 +959,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -1061,6 +1077,7 @@
           {
             "in": "path",
             "name": "challengeId",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -1096,6 +1113,7 @@
           {
             "in": "path",
             "name": "taskId",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -1330,6 +1348,7 @@
           {
             "in": "path",
             "name": "bucketName",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -1338,6 +1357,7 @@
           {
             "in": "path",
             "name": "mediaItem",
+            "required": true,
             "schema": {
               "type": "string"
             },
@@ -1374,6 +1394,7 @@
           {
             "in": "path",
             "name": "datasetId",
+            "required": true,
             "schema": {
               "type": "string"
             }
