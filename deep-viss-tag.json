@@ -819,6 +819,13 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "in": "query",
+            "name": "accessToken",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
