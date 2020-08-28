@@ -1160,14 +1160,88 @@
         },
         "responses": {
           "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/task/discovery/{datasetId}": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Get new task",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetDiscoveryTask",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "datasetId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the dataset"
+          }
+        ],
+        "responses": {
+          "200": {
             "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Task"
+                  "$ref": "#/definitions/GetTaskResponse"
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/task/discovery/submit/{mediaItemId}": {
+      "post": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Submit  task",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "SubmitDiscoveryTask",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "mediaItemId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The identifier of the challenge"
+          }
+        ],
+        "requestBody": {
+          "description": "task object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation"
           },
           "400": {
             "description": "Invalid status value"
@@ -2377,7 +2451,6 @@
       "InternalSubjectiveOpinion": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/InternalSubjectiveOpinion"
       },
-
       "AssignUsersRequest": {
         "type": "object",
         "description": "assign users dto",
