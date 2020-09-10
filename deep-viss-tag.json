@@ -1794,7 +1794,7 @@
             "description": "Token for accessing the challenge",
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
-          "averageTImeSpentPerMediaItem": {
+          "averageTimeSpentPerMediaItem": {
             "type": "integer",
             "description": "average time in seconds to complete a media item",
             "example": "40"
@@ -1838,6 +1838,22 @@
             "type": "number",
             "format": "double",
             "example": 3.14
+          },
+          "nodeTaxonomy": {
+            "type": "array",
+            "description": "taxonomy list for nodeType",
+            "items": {
+              "type": "string"
+            },
+            "example": "consumer,overdue"
+          },
+          "edgeTaxonomy": {
+            "type": "array",
+            "description": "taxonomy list for edgeType",
+            "items": {
+              "type": "string"
+            },
+            "example": "is a, has a"
           }
         }
       },
