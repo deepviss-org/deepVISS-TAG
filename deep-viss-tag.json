@@ -851,7 +851,10 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/TaggedMediaItem"
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/TaggedMediaItem"
+                    }
                   }
                 }
               }
@@ -1790,6 +1793,16 @@
             "type": "string",
             "description": "Token for accessing the challenge",
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "averageTImeSpentPerMediaItem": {
+            "type": "integer",
+            "description": "average time in seconds to complete a media item",
+            "example": "40"
+          },
+          "averageNumberOfActionsPerMediaItem": {
+            "type": "integer",
+            "description": "averege number of actions required to complete a media item",
+            "example": "40"
           }
         }
       },
@@ -2327,6 +2340,11 @@
               "$ref": "#/components/schemas/Edge",
               "type": "Edge"
             }
+          },
+          "stage": {
+            "type": "integer",
+            "description": "tagged media item stage",
+            "example": "2"
           }
         }
       },
