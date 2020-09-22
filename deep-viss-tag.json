@@ -2213,6 +2213,9 @@
           },
           "resolution": {
             "$ref": "#/components/schemas/TaskResolution"
+          },
+          "shred": {
+            "$ref": "#/components/schemas/Shred"
           }
         }
       },
@@ -2604,6 +2607,25 @@
           "taggedMediaItem": {
             "type": "TaggedMediaItem",
             "$ref": "#/components/schemas/TaggedMediaItem"
+          }
+        }
+      },
+      "Shred": {
+        "type": "object",
+        "description": "shred of a media item",
+        "properties": {
+          "shredId": {
+            "description": "Unique ID of shred",
+            "type": "string"
+          },
+          "coordinates": {
+            "type": "TaggedMediaItem",
+            "$ref": "#/components/schemas/BoundingRectangle"
+          },
+          "zoneNumber": {
+            "description": "id of the static shred",
+            "type": "integer",
+            "example": 1
           }
         }
       }
