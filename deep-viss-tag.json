@@ -2182,7 +2182,9 @@
               "failed",
               "skipped",
               "timed-out",
-              "permamnently-failed"
+              "permamnently-failed",
+              "shredded-task",
+              "merged-task"
             ]
           },
           "challengeName": {
@@ -2472,6 +2474,9 @@
       },
       "Shape2DPolygonTextBlock": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DPolygonTextBlock"
+      },
+      "BoundingRectangle": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/BoundingRectangle"
       },
       "Style": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Style"
