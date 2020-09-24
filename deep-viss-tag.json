@@ -41,7 +41,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/Dataset"
+                    "$ref": "#/components/schemas/Dataset"
                   }
                 }
               }
@@ -78,7 +78,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Dataset"
+                  "$ref": "#/components/schemas/Dataset"
                 }
               }
             }
@@ -126,7 +126,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Dataset"
+                  "$ref": "#/components/schemas/Dataset"
                 }
               }
             }
@@ -266,7 +266,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/DatasetStorageCost"
+                  "$ref": "#/components/schemas/DatasetStorageCost"
                 }
               }
             }
@@ -308,7 +308,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Challenge"
+                  "$ref": "#/components/schemas/Challenge"
                 }
               }
             }
@@ -374,7 +374,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/Challenge"
+                    "$ref": "#/components/schemas/Challenge"
                   }
                 }
               }
@@ -441,7 +441,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/Challenge"
+                    "$ref": "#/components/schemas/Challenge"
                   }
                 }
               }
@@ -508,7 +508,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/Challenge"
+                    "$ref": "#/components/schemas/Challenge"
                   }
                 }
               }
@@ -552,7 +552,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Challenge"
+                  "$ref": "#/components/schemas/Challenge"
                 }
               }
             }
@@ -602,7 +602,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Challenge"
+                  "$ref": "#/components/schemas/Challenge"
                 }
               }
             }
@@ -646,7 +646,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Challenge"
+                  "$ref": "#/components/schemas/Challenge"
                 }
               }
             }
@@ -743,7 +743,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/ArchivedShard"
+                  "$ref": "#/components/schemas/ArchivedShard"
                 }
               }
             }
@@ -781,7 +781,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/ArchivedShard"
+                    "$ref": "#/components/schemas/ArchivedShard"
                   }
                 }
               }
@@ -853,7 +853,7 @@
                   "items": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/definitions/TaggedMediaItem"
+                      "$ref": "#/components/schemas/TaggedMediaItem"
                     }
                   }
                 }
@@ -1090,6 +1090,54 @@
         }
       }
     },
+    "/challenge/upload": {
+      "post": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "upload a private challenge.",
+        "description": "",
+        "operationId": "UploadChallenge",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "datasetName",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "datasetType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "challengeAccessType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "challengeTagType",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
     "/task/{challengeId}": {
       "get": {
         "tags": [
@@ -1115,7 +1163,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/GetTaskResponse"
+                  "$ref": "#/components/schemas/GetTaskResponse"
                 }
               }
             }
@@ -1151,12 +1199,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/Task"
+                "$ref": "#/components/schemas/Task"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/definitions/Task"
+                "$ref": "#/components/schemas/Task"
               }
             }
           }
@@ -1196,7 +1244,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/GetTaskResponse"
+                  "$ref": "#/components/schemas/GetTaskResponse"
                 }
               }
             }
@@ -1232,12 +1280,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/Task"
+                "$ref": "#/components/schemas/Task"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/definitions/Task"
+                "$ref": "#/components/schemas/Task"
               }
             }
           }
@@ -1269,7 +1317,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/DispatchPolicy"
+                    "$ref": "#/components/schemas/DispatchPolicy"
                   }
                 }
               }
@@ -1312,7 +1360,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/DispatchPolicy"
+                  "$ref": "#/components/schemas/DispatchPolicy"
                 }
               }
             }
@@ -1340,7 +1388,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/EvaluationPolicy"
+                    "$ref": "#/components/schemas/EvaluationPolicy"
                   }
                 }
               }
@@ -1383,7 +1431,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/EvaluationPolicy"
+                  "$ref": "#/components/schemas/EvaluationPolicy"
                 }
               }
             }
@@ -1523,7 +1571,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/MediaItem"
+                    "$ref": "#/components/schemas/MediaItem"
                   }
                 }
               }
@@ -2020,12 +2068,12 @@
           },
           "descriptor": {
             "type": "MediaDescriptor",
-            "$ref": "#/definitions/MediaDescriptor",
+            "$ref": "#/components/schemas/MediaDescriptor",
             "description": "Information about the evaluation of the accuracy of this tag."
           },
           "sharding": {
             "type": "shardingDescriptor",
-            "$ref": "#/definitions/ShardingDescriptor",
+            "$ref": "#/components/schemas/ShardingDescriptor",
             "description": "Information about the shardId, the block id and the sharding policy this media items should conform to."
           },
           "image": {
@@ -2276,7 +2324,7 @@
           },
           "permanentIdentifier": {
             "type": "PermanentIdentifier",
-            "$ref": "#/definitions/PermanentIdentifier",
+            "$ref": "#/components/schemas/PermanentIdentifier",
             "description": "Identifier (key) composed of several composable elements (sub-keys). Uniqueness is enforced on all segments, in their respective order."
           },
           "nodeType": {
@@ -2294,7 +2342,7 @@
           },
           "evaluation": {
             "type": "Evaluation",
-            "$ref": "#/definitions/Evaluation",
+            "$ref": "#/components/schemas/Evaluation",
             "description": "Information about the evaluation of the accuracy of this tag."
           },
           "composingTags": {
@@ -2345,7 +2393,7 @@
           "mergedTags": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/MergedTag",
+              "$ref": "#/components/schemas/MergedTag",
               "type": "MergedTag"
             }
           },
