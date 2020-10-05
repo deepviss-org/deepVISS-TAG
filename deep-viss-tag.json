@@ -1851,6 +1851,16 @@
             "type": "integer",
             "description": "averege number of actions required to complete a media item",
             "example": "40"
+          },
+          "hasEyeTracking": {
+            "type": "boolean",
+            "description": "checkbox for eye tracking feature",
+            "example": "true"
+          },
+          "hasShredding": {
+            "type": "boolean",
+            "description": "checkbox for shredding feature",
+            "example": "true"
           }
         }
       },
