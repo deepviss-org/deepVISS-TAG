@@ -1968,6 +1968,26 @@
             "format": "double",
             "description": "estimated Tags Per Media Item",
             "example": "4"
+          },
+          "averageTimeSpentPerMediaItem": {
+            "type": "integer",
+            "description": "average time in seconds to complete a media item",
+            "example": "40"
+          },
+          "averageNumberOfActionsPerMediaItem": {
+            "type": "integer",
+            "description": "averege number of actions required to complete a media item",
+            "example": "40"
+          },
+          "hasEyeTracking": {
+            "type": "boolean",
+            "description": "checkbox for eye tracking feature",
+            "example": "true"
+          },
+          "hasShredding": {
+            "type": "boolean",
+            "description": "checkbox for shredding feature",
+            "example": "true"
           }
         }
       },
