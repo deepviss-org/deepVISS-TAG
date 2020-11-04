@@ -1921,7 +1921,7 @@
           "public",
           "private",
           "spot",
-          "confidential"
+          "unlisted"
         ]
       },
       "ChallengeStatusEnum": {
