@@ -2521,7 +2521,8 @@
           "rgb-video",
           "audio-rgb-video",
           "audio-only",
-          "text"
+          "text",
+          ""
         ]
       },
       "TaskResolution": {
