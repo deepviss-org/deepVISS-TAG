@@ -94,7 +94,7 @@
         "tags": [
           "dataset"
         ],
-        "summary": "Retrieve list of datasets",
+        "summary": "create dataset",
         "description": "Multiple status values can be provided with comma separated strings",
         "operationId": "CreateDataset",
         "parameters": [
@@ -118,8 +118,35 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "staticDataset",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
+        "requestBody": {
+          "description": "Dataset",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary",
+                      "description": "file"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "successful operation",
@@ -194,6 +221,26 @@
             }
           }
         ],
+        "requestBody": {
+          "description": "Dataset",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary",
+                      "description": "file"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "description": "successful operation"
@@ -212,6 +259,35 @@
         "summary": "Retrieve list of static images",
         "description": "Multiple status values can be provided with comma separated strings",
         "operationId": "GetDatasetStaticImages",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/dataset/static-dataset/list": {
+      "get": {
+        "tags": [
+          "dataset"
+        ],
+        "summary": "Retrieve list of static images",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetStaticDataset",
         "parameters": [],
         "responses": {
           "200": {
@@ -1128,6 +1204,26 @@
             }
           }
         ],
+        "requestBody": {
+          "description": "Dataset",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary",
+                      "description": "file"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "successful operation"
