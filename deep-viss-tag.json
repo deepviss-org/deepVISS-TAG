@@ -141,6 +141,11 @@
                       "format": "binary",
                       "description": "file"
                     }
+                  },
+                  "coverImage": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "cover image"
                   }
                 }
               }
