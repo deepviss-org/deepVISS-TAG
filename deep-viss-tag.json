@@ -302,7 +302,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "string"
+                    "$ref": "#/components/schemas/Dataset"
                   }
                 }
               }
@@ -1758,6 +1758,17 @@
             "type": "number",
             "format": "double",
             "example": 3.14
+          },
+          "size": {
+            "description": "size of the dataset",
+            "type": "number",
+            "format": "double",
+            "example": 3.14
+          },
+          "numberOfMediaItems": {
+            "description": "media items in that dataset",
+            "type": "integer",
+            "example": 314
           }
         }
       },
