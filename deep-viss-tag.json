@@ -1973,6 +1973,11 @@
             "type": "boolean",
             "description": "checkbox for shredding feature",
             "example": "true"
+          },
+          "taskTimeout": {
+            "type": "integer",
+            "description": "seconds until the task is expired",
+            "example": "40"
           }
         }
       },
