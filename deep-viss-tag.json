@@ -411,6 +411,22 @@
         "parameters": [
           {
             "in": "query",
+            "name": "evaluationId",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "in": "query",
+            "name": "dispatchId",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "in": "query",
             "name": "challengeName",
             "schema": {
               "type": "string"
@@ -418,14 +434,28 @@
           },
           {
             "in": "query",
-            "name": "accessType",
+            "name": "status",
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ChallengeStatusEnum"
             }
           },
           {
             "in": "query",
-            "name": "liked",
+            "name": "hasShredding",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "hasEyeTracking",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "hasBlackout",
             "schema": {
               "type": "boolean"
             }
@@ -444,6 +474,24 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orderDirection",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
             }
           }
         ],
@@ -485,14 +533,59 @@
           },
           {
             "in": "query",
-            "name": "accessType",
+            "name": "datasetId",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "uuid"
             }
           },
           {
             "in": "query",
-            "name": "liked",
+            "name": "evaluationId",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "in": "query",
+            "name": "dispatchId",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "in": "query",
+            "name": "accessType",
+            "schema": {
+              "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "$ref": "#/components/schemas/ChallengeStatusEnum"
+            }
+          },
+          {
+            "in": "query",
+            "name": "hasShredding",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "hasEyeTracking",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "hasBlackout",
             "schema": {
               "type": "boolean"
             }
@@ -511,6 +604,24 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orderDirection",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
             }
           }
         ],
@@ -554,12 +665,26 @@
             "in": "query",
             "name": "accessType",
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
             }
           },
           {
             "in": "query",
-            "name": "liked",
+            "name": "status",
+            "schema": {
+              "$ref": "#/components/schemas/ChallengeStatusEnum"
+            }
+          },
+          {
+            "in": "query",
+            "name": "hasShredding",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "hasEyeTracking",
             "schema": {
               "type": "boolean"
             }
@@ -578,6 +703,24 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orderDirection",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
             }
           }
         ],
@@ -1972,6 +2115,11 @@
           "hasShredding": {
             "type": "boolean",
             "description": "checkbox for shredding feature",
+            "example": "true"
+          },
+          "hasBlackout": {
+            "type": "boolean",
+            "description": "checkbox for blackout feature",
             "example": "true"
           },
           "taskTimeout": {
