@@ -411,22 +411,6 @@
         "parameters": [
           {
             "in": "query",
-            "name": "evaluationId",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "in": "query",
-            "name": "dispatchId",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "in": "query",
             "name": "challengeName",
             "schema": {
               "type": "string"
@@ -434,28 +418,14 @@
           },
           {
             "in": "query",
-            "name": "status",
+            "name": "accessType",
             "schema": {
-              "$ref": "#/components/schemas/ChallengeStatusEnum"
+              "type": "string"
             }
           },
           {
             "in": "query",
-            "name": "hasShredding",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "in": "query",
-            "name": "hasEyeTracking",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "in": "query",
-            "name": "hasBlackout",
+            "name": "liked",
             "schema": {
               "type": "boolean"
             }
@@ -474,24 +444,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "in": "query",
-            "name": "orderBy",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "orderDirection",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
             }
           }
         ],
@@ -533,59 +485,14 @@
           },
           {
             "in": "query",
-            "name": "datasetId",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "in": "query",
-            "name": "evaluationId",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "in": "query",
-            "name": "dispatchId",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "in": "query",
             "name": "accessType",
             "schema": {
-              "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
+              "type": "string"
             }
           },
           {
             "in": "query",
-            "name": "status",
-            "schema": {
-              "$ref": "#/components/schemas/ChallengeStatusEnum"
-            }
-          },
-          {
-            "in": "query",
-            "name": "hasShredding",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "in": "query",
-            "name": "hasEyeTracking",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "in": "query",
-            "name": "hasBlackout",
+            "name": "liked",
             "schema": {
               "type": "boolean"
             }
@@ -604,24 +511,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "in": "query",
-            "name": "orderBy",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "orderDirection",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
             }
           }
         ],
@@ -665,26 +554,12 @@
             "in": "query",
             "name": "accessType",
             "schema": {
-              "$ref": "#/components/schemas/ChallengeAccessTypeEnum"
+              "type": "string"
             }
           },
           {
             "in": "query",
-            "name": "status",
-            "schema": {
-              "$ref": "#/components/schemas/ChallengeStatusEnum"
-            }
-          },
-          {
-            "in": "query",
-            "name": "hasShredding",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "in": "query",
-            "name": "hasEyeTracking",
+            "name": "liked",
             "schema": {
               "type": "boolean"
             }
@@ -703,24 +578,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "in": "query",
-            "name": "orderBy",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "orderDirection",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
             }
           }
         ],
@@ -1613,6 +1470,46 @@
             "description": "Invalid status value"
           }
         }
+      },
+      "put": {
+        "tags": [
+          "dispatchPolicy"
+        ],
+        "summary": "Update dispatchPolicy.",
+        "description": "",
+        "operationId": "UpdateDispatchPolicy",
+        "parameters": [],
+        "requestBody": {
+          "description": "The dispatchPolicy object to be updated",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DispatchPolicy"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/DispatchPolicy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DispatchPolicy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
       }
     },
     "/evaluation-policy/list": {
@@ -1655,6 +1552,46 @@
         "parameters": [],
         "requestBody": {
           "description": "The evaluationPolicy object to be created",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluationPolicy"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluationPolicy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvaluationPolicy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "evaluationPolicy"
+        ],
+        "summary": "update evaluationPolicy.",
+        "description": "",
+        "operationId": "UpdateEvaluationPolicy",
+        "parameters": [],
+        "requestBody": {
+          "description": "The evaluationPolicy object to be updated",
           "required": true,
           "content": {
             "application/json": {
@@ -1908,6 +1845,11 @@
             "format": "double",
             "example": 3.14
           },
+          "numberOfShards": {
+            "description": "number of shards in dataset",
+            "type": "integer",
+            "example": 3
+          },
           "numberOfMediaItems": {
             "description": "media items in that dataset",
             "type": "integer",
@@ -2115,11 +2057,6 @@
           "hasShredding": {
             "type": "boolean",
             "description": "checkbox for shredding feature",
-            "example": "true"
-          },
-          "hasBlackout": {
-            "type": "boolean",
-            "description": "checkbox for blackout feature",
             "example": "true"
           },
           "taskTimeout": {
@@ -2750,6 +2687,11 @@
               "algebraic",
               "non-negative"
             ]
+          },
+          "description": {
+            "type": "string",
+            "description": "EvaluationPolicy description",
+            "example": "Tags must overlap at least 30%"
           }
         }
       },
@@ -2775,6 +2717,11 @@
             "description": "Time to wait before assign the same mediaItem to other user",
             "type": "integer",
             "example": 10
+          },
+          "description": {
+            "type": "string",
+            "description": "DispatchPolicy description",
+            "example": "Three users need to tag a task in order to be validated"
           }
         }
       },
