@@ -2136,6 +2136,10 @@
                 "type": "integer",
                 "description": "shards in dataset",
                 "example": "4"
+              },
+              "coverImage": {
+                "type": "Images",
+                "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Image"
               }
             }
           },
