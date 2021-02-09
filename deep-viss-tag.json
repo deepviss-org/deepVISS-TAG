@@ -2136,6 +2136,10 @@
                 "type": "integer",
                 "description": "shards in dataset",
                 "example": "4"
+              },
+              "coverImage": {
+                "type": "Images",
+                "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Image"
               }
             }
           },
@@ -2362,6 +2366,24 @@
             "example": 1
           },
           "percentage": {
+            "description": "completion percentage for this stage",
+            "type": "integer",
+            "format": "int32",
+            "example": 100
+          },
+          "pendingTasksPercentage": {
+            "description": "completion percentage for this stage",
+            "type": "integer",
+            "format": "int32",
+            "example": 100
+          },
+          "failedTasksPercentage": {
+            "description": "completion percentage for this stage",
+            "type": "integer",
+            "format": "int32",
+            "example": 100
+          },
+          "reportedTasksPercentage": {
             "description": "completion percentage for this stage",
             "type": "integer",
             "format": "int32",
