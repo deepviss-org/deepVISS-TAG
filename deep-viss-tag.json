@@ -1833,6 +1833,15 @@
               "type": "string"
             },
             "description": "media item"
+          },
+          {
+            "in": "query",
+            "name": "taskId",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "shred id"
           }
         ],
         "responses": {
@@ -2616,12 +2625,6 @@
             "format": "date-time",
             "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00) when the task was submitted by the user"
           },
-          "image": {
-            "type": "Images",
-            "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Image",
-            "description": "Alpa-numeric, unique id of media item path. ",
-            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
-          },
           "evaluationStatus": {
             "type": "string",
             "enum": [
@@ -2687,6 +2690,14 @@
             "description": "What does the object that has been detected represent. Can be extended to discrete histogram of types.",
             "example": "vehicle"
           },
+          "attributes": {
+            "description": "Atributes of a tag",
+            "type": "array",
+            "items": {
+              "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Attribute",
+              "type": "Attribute"
+            }
+          },
           "geometry": {
             "description": "What are the shapes that compose the tag?",
             "type": "array",
@@ -2734,6 +2745,14 @@
             "description": "What type of object/event has been detected?",
             "example": "vehicle"
           },
+          "attributes": {
+            "description": "Atributes of a tag",
+            "type": "array",
+            "items": {
+              "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Attribute",
+              "type": "Attribute"
+            }
+          },
           "geometry": {
             "description": "What are the shapes that have been merged to determine this tag?",
             "type": "array",
@@ -2775,10 +2794,15 @@
             "description": "Alpha-numeric, unique id of tagged object",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
-          "mediaItemId": {
-            "type": "string",
-            "description": "Alpha-numeric, unique id of tagged object",
-            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          "mediaItem": {
+            "type": "MediaItem",
+            "$ref": "#/components/schemas/MediaItem",
+            "description": "MediaItem tagged"
+          },
+          "descriptor": {
+            "type": "MediaDescriptor",
+            "$ref": "#/components/schemas/MediaDescriptor",
+            "description": "Information about the evaluation of the accuracy of this tag."
           },
           "challengeId": {
             "type": "string",
@@ -2798,12 +2822,6 @@
               "$ref": "#/components/schemas/MergedTag",
               "type": "MergedTag"
             }
-          },
-          "image": {
-            "type": "Images",
-            "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Image",
-            "description": "Alpa-numeric, unique id of media item path. ",
-            "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "mergedEdges": {
             "type": "array",
