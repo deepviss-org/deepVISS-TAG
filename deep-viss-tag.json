@@ -158,7 +158,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Dataset"
+                  "$ref": "#/components/schemas/UploadDatasetResponse"
                 }
               }
             }
@@ -248,7 +248,14 @@
         },
         "responses": {
           "204": {
-            "description": "successful operation"
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadDatasetResponse"
+                }
+              }
+            }
           },
           "400": {
             "description": "Invalid status value"
@@ -2006,6 +2013,11 @@
             "description": "media items in that dataset",
             "type": "integer",
             "example": 314
+          },
+          "hasBrokenItems": {
+            "type": "boolean",
+            "description": "hasBrokenItems",
+            "example": "true"
           }
         }
       },
@@ -2031,6 +2043,45 @@
             "type": "number",
             "format": "double",
             "example": 3.14
+          }
+        }
+      },
+      "UploadDatasetResponse": {
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "$ref": "#/components/schemas/Dataset"
+          },
+          "shard": {
+            "description": "shard number",
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "uploadedSize": {
+            "description": "size of the dataset",
+            "type": "number",
+            "format": "double",
+            "example": 3.14
+          },
+          "uploadedNumberOfMediaItems": {
+            "description": "number of datasets that were uploaded",
+            "type": "integer",
+            "example": 3.14
+          },
+          "brokenMediaItems": {
+            "description": "Media items that are broken but still saved",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "failedMediaItems": {
+            "description": "Media items could not be saved",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -2492,6 +2543,11 @@
             "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Image",
             "description": "Alpa-numeric, unique id of media item path. ",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "broken": {
+            "type": "boolean",
+            "description": "broken",
+            "example": "true"
           }
         }
       },
