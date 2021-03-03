@@ -2521,6 +2521,7 @@
               "image/heif-sequence",
               "image/jpeg",
               "image/png",
+              "image/webp",
               "video/mp4",
               "video/3gpp",
               "video/quicktime",
