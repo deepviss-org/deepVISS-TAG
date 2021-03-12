@@ -1285,14 +1285,14 @@
         }
       }
     },
-    "/challenge/assign": {
+    "/challenge/assign-users": {
       "post": {
         "tags": [
           "challenge"
         ],
         "summary": "Assign a private challenge.",
         "description": "",
-        "operationId": "AssignChallenge",
+        "operationId": "AssignUsers",
         "parameters": [],
         "requestBody": {
           "description": "The users to be assigned to a challenge",
@@ -1306,6 +1306,42 @@
             "application/xml": {
               "schema": {
                 "$ref": "#/components/schemas/AssignUsersRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/challenge/assign-challenges": {
+      "post": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Assign private challenges.",
+        "description": "",
+        "operationId": "AssignChallenges",
+        "parameters": [],
+        "requestBody": {
+          "description": "The challenges to be assigned to a user",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignChallengesRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignChallengesRequest"
               }
             }
           }
@@ -3033,13 +3069,27 @@
         "type": "object",
         "description": "assign users dto",
         "properties": {
-          "challengeIds": {
+          "challengeId": {
+            "description": "Unique ID of challenge",
+            "type": "string"
+          },
+          "avatarIds": {
             "type": "array",
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "AssignChallengesRequest": {
+        "type": "object",
+        "description": "assign users dto",
+        "properties": {
+          "avatarId": {
+            "description": "Unique ID of avatar",
+            "type": "string"
           },
-          "avatarIds": {
+          "challengeIds": {
             "type": "array",
             "items": {
               "type": "string"
