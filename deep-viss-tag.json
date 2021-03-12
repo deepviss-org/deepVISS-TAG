@@ -3033,9 +3033,11 @@
         "type": "object",
         "description": "assign users dto",
         "properties": {
-          "challengeId": {
-            "description": "Unique ID of challenge",
-            "type": "string"
+          "challengeIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "avatarIds": {
             "type": "array",
