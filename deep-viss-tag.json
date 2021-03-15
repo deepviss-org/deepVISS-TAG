@@ -3142,6 +3142,11 @@
       "Edge": {
         "type": "object",
         "properties": {
+          "edgeId": {
+            "type": "string",
+            "description": "unique id of edge object",
+            "example": "33d6c32b-3e53-42bb-804a-10553102cff9"
+          },
           "sourceTagId": {
             "type": "string",
             "description": "Need to find solution for unifying tag id's across taggers-collaborators.Alpha-numeric, unique id of tagged object",
