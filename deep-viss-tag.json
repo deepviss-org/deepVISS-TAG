@@ -208,6 +208,43 @@
         }
       }
     },
+    "/dataset/download/{datasetId}": {
+      "get": {
+        "tags": [
+          "dataset"
+        ],
+        "summary": "download dataset",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "DownloadDataset",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "datasetId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
     "/dataset/media-item/{datasetId}": {
       "post": {
         "tags": [
@@ -222,7 +259,8 @@
             "name": "datasetId",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -2558,6 +2596,7 @@
               "image/jpeg",
               "image/png",
               "image/webp",
+              "image/x-portable-pixmap",
               "video/mp4",
               "video/3gpp",
               "video/quicktime",
@@ -2585,6 +2624,14 @@
             "type": "boolean",
             "description": "broken",
             "example": "true"
+          },
+          "processedMediaItems": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Path to the processed mediaItem",
+              "example": "/dataset/photo.jpg"
+            }
           }
         }
       },
@@ -3034,6 +3081,9 @@
       },
       "Point3D": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Point3D"
+      },
+      "Shape2DPoint": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DPoint"
       },
       "Shape2DRectangle": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DRectangle"
