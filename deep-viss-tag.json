@@ -1561,6 +1561,15 @@
               "type": "string"
             },
             "description": "The identifier of the dataset"
+          },
+          {
+            "in": "query",
+            "name": "tagType",
+            "schema": {
+              "type": "ShapeTypeEnum",
+              "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/ShapeTypeEnum"
+            },
+            "description": "The identifier of the tag type"
           }
         ],
         "responses": {
@@ -1933,6 +1942,60 @@
                 "schema": {
                   "type": "string",
                   "format": "byte"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/media-item/text/{documentId}/{pageId}": {
+      "get": {
+        "tags": [
+          "mediaItem"
+        ],
+        "summary": "Retrieve media item",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "GetTextMediaItem",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "documentId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "documentId"
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "pageId"
+          },
+          {
+            "in": "query",
+            "name": "taskId",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "shred id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -2605,7 +2668,8 @@
               "video/3gpp",
               "video/quicktime",
               "video/x-msvideo",
-              "video/x-ms-wmv"
+              "video/x-ms-wmv",
+              "text"
             ]
           },
           "descriptor": {
@@ -2623,6 +2687,17 @@
             "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Image",
             "description": "Alpa-numeric, unique id of media item path. ",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
+          },
+          "text": {
+            "type": "Text",
+            "$ref": "string",
+            "description": "Alpa-numeric text. ",
+            "example": "This is the text for media item"
+          },
+          "path": {
+            "type": "string",
+            "description": "path to the media item",
+            "example": "bucket/photo.jpg"
           },
           "broken": {
             "type": "boolean",
@@ -3281,6 +3356,5 @@
   "externalDocs": {
     "description": "Find out more about DeepVISS",
     "url": "https://deepviss.org"
-
   }
 }
