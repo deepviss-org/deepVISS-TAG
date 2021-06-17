@@ -3173,6 +3173,9 @@
       "Shape2DPolygonTextBlock": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DPolygonTextBlock"
       },
+      "Shape2DPlainText": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DPlainText"
+      },
       "BoundingRectangle": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/BoundingRectangle"
       },
