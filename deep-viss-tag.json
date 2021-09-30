@@ -2412,6 +2412,16 @@
             "type": "integer",
             "description": "seconds until the task is expired",
             "example": "40"
+          },
+          "numberOfTaggedMediaItems": {
+            "type": "integer",
+            "description": "numberOfTaggedMediaItems",
+            "example": "40"
+          },
+          "numberOfMergedTags": {
+            "type": "integer",
+            "description": "numberOfMergedTags",
+            "example": "40"
           }
         }
       },
