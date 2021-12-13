@@ -3057,6 +3057,11 @@
             "type": "integer",
             "description": "tagged media item stage",
             "example": "2"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00) when the task was submitted by the user"
           }
         }
       },
