@@ -16,7 +16,23 @@
   "tags": [
     {
       "name": "dataset",
-      "description": "Infroamation about the datasets",
+      "description": "Information about the datasets",
+      "externalDocs": {
+        "description": "Datasets API",
+        "url": "https://deepviss.org"
+      }
+    },
+    {
+      "name": "avatar",
+      "description": "Information about the avatars",
+      "externalDocs": {
+        "description": "Datasets API",
+        "url": "https://deepviss.org"
+      }
+    },
+    {
+      "name": "price",
+      "description": "Information about the pricing",
       "externalDocs": {
         "description": "Datasets API",
         "url": "https://deepviss.org"
@@ -67,7 +83,8 @@
             "name": "datasetId",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "UUID"
             },
             "description": "The identifier of the dataset"
           }
@@ -2059,6 +2076,141 @@
           }
         }
       }
+    },
+    "/avatar/createAvatar": {
+      "get": {
+        "tags": [
+          "avatar"
+        ],
+        "summary": "Create avatar",
+        "description": "",
+        "operationId": "CreateAvatar",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Avatar"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/avatar/badge/list": {
+      "get": {
+        "tags": [
+          "avatar"
+        ],
+        "summary": "Get Badge",
+        "description": "",
+        "operationId": "GetBadge",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Badge"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/avatar": {
+      "get": {
+        "tags": [
+          "avatar"
+        ],
+        "summary": "Get avatar",
+        "description": "",
+        "operationId": "GetAvatar",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "avatarId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "UUID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Avatar"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/price/checkNumberOfUsers": {
+      "get": {
+        "tags": [
+          "price"
+        ],
+        "summary": "Check number of users",
+        "description": "",
+        "operationId": "checkNumberOfUsers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pricePlan",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "numberOfCollaborators",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2068,6 +2220,7 @@
         "properties": {
           "avatarId": {
             "type": "string",
+            "format": "uuid",
             "description": "[TBD] Alpha-numeric, unique id of avatar",
             "example": "UTWKE80768EF05389899TDD196397EDFDDFBC81751818B7FD13001IU455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -2085,6 +2238,24 @@
           }
         }
       },
+      "Badge": {
+        "type": "object",
+        "properties": {
+          "badgeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
       "LifeFormEnum": {
         "type": "string",
         "enum": [
@@ -2097,6 +2268,7 @@
         "properties": {
           "datasetId": {
             "type": "string",
+            "format": "uuid",
             "description": "[TBD] Alpha-numeric, unique id of dataset",
             "example": "XAFKE80768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -2115,6 +2287,7 @@
           },
           "owningAccountId": {
             "type": "string",
+            "format": "uuid",
             "description": "[TBD] Alpha-numeric, unique id of dataset",
             "example": "UWRBFUWRW18B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0EUWEBFWUBEFWUE"
           },
@@ -2163,6 +2336,7 @@
         "properties": {
           "datasetId": {
             "type": "string",
+            "format": "uuid",
             "description": "[TBD] Alpha-numeric, unique id of dataset",
             "example": "XAFKE80768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -2230,21 +2404,25 @@
         "properties": {
           "challengeId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of challenge. ",
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "datasetId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of dataset",
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "evaluationPolicyId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of evaluation policy",
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "dispatchPolicyId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of dispatch policy",
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -2298,6 +2476,7 @@
           },
           "supplierTenantId": {
             "type": "string",
+            "format": "uuid",
             "description": "[TBD] Alpha-numeric, name of supplierTenantId",
             "example": "Dogs"
           },
@@ -2308,6 +2487,7 @@
           },
           "demanderTenantId": {
             "type": "string",
+            "format": "uuid",
             "description": "[TBD] Alpha-numeric, name of demanderTenantId",
             "example": "Dogs"
           },
@@ -2430,11 +2610,13 @@
         "properties": {
           "evaluationPolicyId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of evaluation policy",
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "dispatchPolicyId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of dispatch policy",
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -2507,16 +2689,19 @@
         "properties": {
           "datasetId": {
             "type": "string",
+            "format": "uuid",
             "description": "[TBD] Alpha-numeric, unique id of dataset",
             "example": "XAFKE80768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "evaluationPolicyId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of evaluation policy",
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "dispatchPolicyId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of dispatch policy",
             "example": "DFK768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -2646,6 +2831,7 @@
         "properties": {
           "mediaItemId": {
             "type": "string",
+            "format": "uuid",
             "description": "[TBD] Alpha-numeric, unique id of media item",
             "example": "UERE80768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -2679,7 +2865,8 @@
               "video/quicktime",
               "video/x-msvideo",
               "video/x-ms-wmv",
-              "text"
+              "text",
+              "audio/wav"
             ]
           },
           "descriptor": {
@@ -2819,16 +3006,19 @@
         "properties": {
           "taskId": {
             "type": "string",
+            "format": "UUID",
             "description": "Alpha-numeric, unique id of user who has performed the task",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "avatarId": {
             "type": "string",
+            "format": "UUID",
             "description": "Alpha-numeric, unique id of user who has performed the task.",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "challengeId": {
             "type": "string",
+            "format": "UUID",
             "description": "Alpa-numeric, unique id of challenge. ",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -2900,6 +3090,7 @@
         "properties": {
           "tagId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of tagged object",
             "example": "B07E91CB289F87791D78064ECC93754F19B13D419489F162"
           },
@@ -2931,6 +3122,7 @@
           },
           "taskId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of task object",
             "example": "1CB289F87791D78064ECC93754F19B13D419489F162A"
           },
@@ -2945,16 +3137,19 @@
         "properties": {
           "mergedTagId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of tagged object",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "mediaItemId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of tagged object",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
           "challengeId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of tagged object",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -3003,11 +3198,6 @@
               "failed",
               "incomplete"
             ]
-          },
-          "creationTimestamp": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Date and time expressed according to ISO 8601 (e.g. 2018-06-24T23:10:28+03:00) when the task was submitted by the user"
           }
         }
       },
@@ -3019,6 +3209,7 @@
         "properties": {
           "taggedMediaItemId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of tagged object",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -3034,6 +3225,7 @@
           },
           "challengeId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of tagged object",
             "example": "7E43358680768EF053898993DD196397EDFDDFBC81751818B7FD1300124455B07E91CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -3076,7 +3268,8 @@
         "properties": {
           "evaluationPolicyId": {
             "description": "Unique ID of evaluation policy",
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "name": {
             "description": "name",
@@ -3122,7 +3315,8 @@
         "properties": {
           "dispatchPolicyId": {
             "description": "Unique ID of dispatch policy",
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "name": {
             "description": "name",
@@ -3196,6 +3390,9 @@
       "Shape2DPlainText": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DPlainText"
       },
+      "Shape2DAudio": {
+        "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/Shape2DAudio"
+      },
       "BoundingRectangle": {
         "$ref": "https://raw.githubusercontent.com/deepviss-org/deepVISS-COMMON/master/deep-viss-common.json#/components/schemas/BoundingRectangle"
       },
@@ -3217,7 +3414,8 @@
         "properties": {
           "challengeId": {
             "description": "Unique ID of challenge",
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "avatarIds": {
             "type": "array",
@@ -3233,7 +3431,8 @@
         "properties": {
           "avatarId": {
             "description": "Unique ID of avatar",
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "challengeIds": {
             "type": "array",
@@ -3248,6 +3447,7 @@
         "properties": {
           "challengeId": {
             "type": "string",
+            "format": "uuid",
             "description": "Alpha-numeric, unique id of challenge. ",
             "example": "1CB289F87791D78064ECC93754F19B13D419489F162A150A22DD814CKAF0E"
           },
@@ -3290,6 +3490,7 @@
         "properties": {
           "edgeId": {
             "type": "string",
+            "format": "uuid",
             "description": "unique id of edge object",
             "example": "33d6c32b-3e53-42bb-804a-10553102cff9"
           },
@@ -3341,7 +3542,8 @@
         "properties": {
           "taskId": {
             "description": "Unique ID of task",
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "taggedMediaItem": {
             "type": "TaggedMediaItem",
@@ -3355,7 +3557,8 @@
         "properties": {
           "shredId": {
             "description": "Unique ID of shred",
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "coordinates": {
             "type": "TaggedMediaItem",
