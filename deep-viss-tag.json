@@ -1480,6 +1480,34 @@
         }
       }
     },
+    "/challenge/tagged-media-item/save": {
+      "post": {
+        "tags": [
+          "challenge"
+        ],
+        "summary": "Save tagged media item",
+        "description": "Save tagged media item for audio files",
+        "operationId": "saveTaggedMediaItem",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaggedMediaItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
     "/task/{challengeId}": {
       "get": {
         "tags": [
