@@ -2530,7 +2530,7 @@
           "initialNumberOfShards": {
             "type": "integer",
             "description": "shards in dataset",
-            "example": "4"
+            "example": 4
           },
           "datasetMetadata": {
             "type": "object",
@@ -2548,7 +2548,7 @@
               "numberOfShards": {
                 "type": "integer",
                 "description": "shards in dataset",
-                "example": "4"
+                "example": 4
               },
               "coverImage": {
                 "type": "Images",
@@ -2607,7 +2607,7 @@
           "averageNumberOfActionsPerMediaItem": {
             "type": "integer",
             "description": "averege number of actions required to complete a media item",
-            "example": "40"
+            "example": 40
           },
           "hasEyeTracking": {
             "type": "boolean",
@@ -2632,12 +2632,12 @@
           "numberOfTaggedMediaItems": {
             "type": "integer",
             "description": "numberOfTaggedMediaItems",
-            "example": "40"
+            "example": 40
           },
           "numberOfMergedTags": {
             "type": "integer",
             "description": "numberOfMergedTags",
-            "example": "40"
+            "example": 40
           }
         }
       },
@@ -2754,12 +2754,12 @@
           "averageTimeSpentPerMediaItem": {
             "type": "integer",
             "description": "average time in seconds to complete a media item",
-            "example": "40"
+            "example": 40
           },
           "averageNumberOfActionsPerMediaItem": {
             "type": "integer",
             "description": "averege number of actions required to complete a media item",
-            "example": "40"
+            "example": 40
           },
           "hasEyeTracking": {
             "type": "boolean",
@@ -3012,12 +3012,14 @@
           "block": {
             "description": "TBD",
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": 2
           },
           "shard": {
             "description": "TBD",
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": 2
           }
         }
       },
