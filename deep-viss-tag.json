@@ -2564,7 +2564,7 @@
             "type": "number",
             "format": "double",
             "description": "estimated Tags Per Media Item",
-            "example": "4"
+            "example": 3.14
           },
           "nodeTaxonomy": {
             "type": "array",
@@ -2749,7 +2749,7 @@
             "type": "number",
             "format": "double",
             "description": "estimated Tags Per Media Item",
-            "example": "4"
+            "example": 3.14
           },
           "averageTimeSpentPerMediaItem": {
             "type": "integer",
@@ -3028,7 +3028,8 @@
           "confidence": {
             "description": "The confidence of the merged tag (from several tags), based on IoU (Intersection over Union) of the composing tags. The confidence is the reduce form of the SubjectiveOpinion, representing only its belief part.",
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "example": 0.14
           },
           "subjectiveOpinion": {
             "description": "The normalized form of InternalSubjectiveOpinion. Confidence represented the belief components of this object.",
@@ -3511,13 +3512,13 @@
             "type": "number",
             "format": "double",
             "description": "completion percentage of a challenge",
-            "example": "70"
+            "example": 30.14
           },
           "currentCompletionPercentage": {
             "type": "number",
             "format": "double",
             "description": "completion percentage of a challenge",
-            "example": "70"
+            "example": 30.14
           }
         }
       },
@@ -3564,6 +3565,7 @@
           "elasticity": {
             "type": "number",
             "format": "double",
+            "example": 3.14,
             "description": "How much the edge can extended or contracted?"
           },
           "internalSubjectiveOpinion": {
